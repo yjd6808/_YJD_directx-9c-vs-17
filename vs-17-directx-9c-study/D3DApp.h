@@ -1,8 +1,13 @@
 #pragma once
 #include <d3d9.h>
 
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 600
+
+
 class D3DApp
 {
+protected:
 	LPDIRECT3D9 m_pD3D;
 	LPDIRECT3DDEVICE9 m_pD3DDevice;
 	HWND m_hWnd;

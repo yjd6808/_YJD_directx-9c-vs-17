@@ -11,6 +11,9 @@
     <Filter Include="D3DApp\D3DEdu01">
       <UniqueIdentifier>{cdcfe5b1-e216-4ef4-bd73-d61ac3aa0e2f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="D3DApp\D3DEdu01\Triangle">
+      <UniqueIdentifier>{9a67f411-4afa-4ed6-96f3-0f5d5cb6916b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D3DApp.cpp">
@@ -20,6 +23,9 @@
       <Filter>D3DApp\D3DEdu01</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Triangle.cpp">
+      <Filter>D3DApp\D3DEdu01\Triangle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="D3DApp.h">
@@ -27,6 +33,11 @@
     </ClInclude>
     <ClInclude Include="D3DEdu01.h">
       <Filter>D3DApp\D3DEdu01</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h" />
+    <ClInclude Include="StringFormatter.h" />
+    <ClInclude Include="Triangle.h">
+      <Filter>D3DApp\D3DEdu01\Triangle</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

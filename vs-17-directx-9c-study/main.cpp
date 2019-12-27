@@ -1,12 +1,9 @@
 // vs17-directx-study.cpp : 응용 프로그램에 대한 진입점을 정의합니다.
 //
 
-#include <Windows.h>
-#include <iostream>
-#include <d3d9.h>
-
 #include "D3DEdu01.h"
-
+#include "common.h"
+#include "StringFormatter.h"
 using namespace std;
 
 D3DEdu01 edu01;
@@ -22,79 +19,81 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_ LPWSTR    lpCmdLine,
 	_In_ int       nCmdShow)
 {
-	HWND 윈도우핸들;
-	WNDCLASSEX 윈도우의정보를담는클래스;
+	HWND hWnd;
+	WNDCLASSEX wc;
 
-	ZeroMemory(&윈도우의정보를담는클래스, sizeof(WNDCLASSEX));
+	ZeroMemory(&wc, sizeof(WNDCLASSEX));
 
-	윈도우의정보를담는클래스.cbSize = sizeof(WNDCLASSEX);
-	윈도우의정보를담는클래스.style = CS_HREDRAW | CS_VREDRAW;
-	윈도우의정보를담는클래스.lpfnWndProc = WindowProc;
-	윈도우의정보를담는클래스.hInstance = hInstance;
-	윈도우의정보를담는클래스.hCursor = LoadCursor(NULL, IDC_ARROW);
-	윈도우의정보를담는클래스.hbrBackground = (HBRUSH)COLOR_WINDOW;
-	윈도우의정보를담는클래스.lpszClassName = "정도의 윈도우";
+	wc.cbSize = sizeof(WNDCLASSEX);
+	wc.style = CS_HREDRAW | CS_VREDRAW;
+	wc.lpfnWndProc = WindowProc;
+	wc.hInstance = hInstance;
+	wc.hCursor = LoadCursor(nullptr, IDC_ARROW);
+	wc.lpszClassName = "WindowClass";
 
-	RegisterClassEx(&윈도우의정보를담는클래스);
+	RegisterClassEx(&wc);
 
-	윈도우핸들 = CreateWindowEx(
-		NULL,
-		"정도의 윈도우",	//창 클래스 이름
-		"YJD Window",		//창 제목
-		WS_OVERLAPPEDWINDOW,//창 스타일
-		300,				//창의 x위치
-		300,				//창의 y위치
-		500,				//창의 너비
-		400,				//창의 높이
-		NULL,				//부모 창
-		NULL,				//메뉴를 사용하지 않음
-		hInstance,			//응용프로그램의 핸들
-		NULL				//여러창과 함께 사용
-	);
+	hWnd = CreateWindowEx(0,
+		"WindowClass",
+		"Our Direct3D Program",
+		WS_OVERLAPPEDWINDOW,
+		0, 0,
+		SCREEN_WIDTH, SCREEN_HEIGHT,
+		nullptr,
+		nullptr,
+		hInstance,
+		nullptr);
 
-	
-	
-	edu01.InitD3D(윈도우핸들);
+	ShowWindow(hWnd, nCmdShow);
 
-	ShowWindow(윈도우핸들, nCmdShow);
+	edu01.InitD3D(hWnd);
 
 	//윈도우상에서 일어나는 이벤트에대한 정보를 담을 구조체
-	MSG 메시지;
+	MSG msg = { 0 };
 
 	//DirectX에선 PeekMessage를 사용해야한다.
 	//PeekMessage는 앞의 4개의 인자까지는 GetMessage와 사용법이 같다.
 	//5번째 인자로 PM_REMOVE 또는 PM_NOREMOVE 함수를 전달해야한다.
-	while (true) {
+	while (true)
+	{
+		//PeekMessage 함수로 이벤트 없을 때는 false로 받아옴
+		bool  bGotMsg = (PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE) != 0);
 
-		while (PeekMessage(&메시지, 윈도우핸들, 0, 0, PM_REMOVE)) {
-			TranslateMessage(&메시지);
-			DispatchMessage(&메시지);
-		}
-
-		//
-		if (메시지.message == WM_QUIT)
+		if (msg.message == WM_QUIT)
 			break;
 
-		edu01.OnUpdate();
-		edu01.OnRender();
+		if (bGotMsg)
+		{
+			//윈도우상 메세지 분석
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+		else
+		{
+			// 메세지가 없을 때 프레임 재생
+			edu01.Update();
+			edu01.Render(); 
+		}
 	}
 
+	edu01.CleanUp();
 
-	return 메시지.wParam;;
+	// clean up DirectX and COM
+	return msg.wParam;;
 }
 
-LRESULT CALLBACK WindowProc(HWND hWnd, UINT 메시지, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	switch (메시지)
+	switch (message)
 	{
 	case WM_DESTROY:
 	{
 		PostQuitMessage(0);
 		return 0;
+	} break;
 	}
-	break;
-	}
-	return DefWindowProc(hWnd, 메시지, wParam, lParam);
+
+	return DefWindowProc(hWnd, message, wParam, lParam);
 }
 
 
