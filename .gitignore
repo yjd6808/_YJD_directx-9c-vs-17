@@ -26,8 +26,8 @@ mono_crash.*
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
-x64/
-x86/
+#x64/
+#x86/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
 bld/
@@ -358,5 +358,5 @@ MigrationBackup/
 
 # 내가 자체적으로 추가한 설정
 # 다이렉트 추가파일
-!/d3d_include/
-!/d3d_lib/
+!/d3d_include
+!/d3d_lib
