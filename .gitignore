@@ -354,3 +354,9 @@ healthchecksdb
 MigrationBackup/
 
 # End of https://www.gitignore.io/api/VisualStudio
+
+
+# 내가 자체적으로 추가한 설정
+# 다이렉트 추가파일
+!/d3d_include/
+!/d3d_lib/
