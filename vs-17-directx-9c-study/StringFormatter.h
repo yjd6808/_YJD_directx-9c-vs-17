@@ -3,6 +3,7 @@
 #include <sstream>
 #include <string>
 
+//여러타입을 받아 문자열을 생성해주는 클래스
 class StringFormatter
 {
 	static std::stringstream ss;

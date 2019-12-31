@@ -8,6 +8,7 @@
 #include <unordered_map>
 #include <iostream>
 #include <stdarg.h>
+#include "StringFormatter.h"
 
 using namespace std;
 
