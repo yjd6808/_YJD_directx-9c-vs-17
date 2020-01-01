@@ -3,6 +3,7 @@
 #include <d3d9.h>
 #include "D3DCamera.h"
 #include "D3DCube.h"
+#include "D3DAxis.h"
 
 class D3DObjectFactory {
 public:
@@ -11,6 +12,7 @@ public:
 	
 	D3DCamera* CreateCamera(HWND hwnd);
 	D3DCube* CreateCube(float length);
+	D3DAxis* CreateAxis(float length);
 	/*T CreateRectangleBox(float x_length, float y_length, float z_length);
 	T CreateSphere(float radious);*/
 

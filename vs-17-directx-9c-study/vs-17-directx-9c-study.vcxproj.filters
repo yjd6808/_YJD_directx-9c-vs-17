@@ -37,6 +37,9 @@
     <ClCompile Include="D3DSize.cpp">
       <Filter>D3DFramework\D3DData</Filter>
     </ClCompile>
+    <ClCompile Include="D3DAxis.cpp">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_3D어플리케이션.h">
@@ -95,6 +98,9 @@
     </ClInclude>
     <ClInclude Include="common.h">
       <Filter>MyApplication</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DAxis.h">
+      <Filter>D3DFramework\D3DObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

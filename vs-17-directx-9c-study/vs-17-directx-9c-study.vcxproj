@@ -22,6 +22,7 @@
     <ClCompile Include="D3DApplication.cpp" />
     <ClCompile Include="D3DApplication2D.cpp" />
     <ClCompile Include="D3DApplication3D.cpp" />
+    <ClCompile Include="D3DAxis.cpp" />
     <ClCompile Include="D3DCamera.cpp" />
     <ClCompile Include="D3DCube.cpp" />
     <ClCompile Include="D3DManager.cpp" />
@@ -37,6 +38,7 @@
     <ClInclude Include="D3DApplication.h" />
     <ClInclude Include="D3DApplication2D.h" />
     <ClInclude Include="D3DApplication3D.h" />
+    <ClInclude Include="D3DAxis.h" />
     <ClInclude Include="D3DCamera.h" />
     <ClInclude Include="D3DCube.h" />
     <ClInclude Include="D3DIndexBuffer.h" />

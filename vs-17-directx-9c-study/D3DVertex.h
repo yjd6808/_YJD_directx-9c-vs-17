@@ -1,3 +1,5 @@
+#pragma once
+
 #include "D3DPoint.h"
 
 typedef struct 
