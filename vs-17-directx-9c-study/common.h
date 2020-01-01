@@ -8,8 +8,6 @@
 #include <unordered_map>
 #include <iostream>
 #include <stdarg.h>
-#include "StringFormatter.h"
-
 using namespace std;
 
 #define MSGBOX(...)					MessageBox(nullptr, StringFormatter::Generate(__VA_ARGS__).c_str(), nullptr, MB_OK)

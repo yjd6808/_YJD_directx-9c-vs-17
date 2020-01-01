@@ -1,38 +1,114 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="_3D어플리케이션.cpp" />
-    <ClCompile Include="D3DApplication.cpp" />
-    <ClCompile Include="D3DApplication2D.cpp" />
-    <ClCompile Include="D3DApplication3D.cpp" />
-    <ClCompile Include="D3DCamera.cpp" />
-    <ClCompile Include="D3DCube.cpp" />
-    <ClCompile Include="D3DManager.cpp" />
-    <ClCompile Include="D3DObject.cpp" />
-    <ClCompile Include="D3DObjectFactory.cpp" />
-    <ClCompile Include="D3DPoint.cpp" />
-    <ClCompile Include="D3DSize.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="_3D어플리케이션.cpp">
+      <Filter>MyApplication</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>MyApplication</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DApplication.cpp">
+      <Filter>D3DFramework</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DApplication2D.cpp">
+      <Filter>D3DFramework</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DApplication3D.cpp">
+      <Filter>D3DFramework</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DManager.cpp">
+      <Filter>D3DFramework</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DCamera.cpp">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DCube.cpp">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DObject.cpp">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DObjectFactory.cpp">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DPoint.cpp">
+      <Filter>D3DFramework\D3DData</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DSize.cpp">
+      <Filter>D3DFramework\D3DData</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="_3D어플리케이션.h" />
-    <ClInclude Include="common.h" />
-    <ClInclude Include="D3DApplication.h" />
-    <ClInclude Include="D3DApplication2D.h" />
-    <ClInclude Include="D3DApplication3D.h" />
-    <ClInclude Include="D3DCamera.h" />
-    <ClInclude Include="D3DCube.h" />
-    <ClInclude Include="D3DIndexBuffer.h" />
-    <ClInclude Include="D3DMacro.h" />
-    <ClInclude Include="D3DManager.h" />
-    <ClInclude Include="D3DObject.h" />
-    <ClInclude Include="D3DObjectFactory.h" />
-    <ClInclude Include="D3DPoint.h" />
-    <ClInclude Include="D3DProperties.h" />
-    <ClInclude Include="D3DSize.h" />
-    <ClInclude Include="D3DVertex.h" />
-    <ClInclude Include="D3DVertexBuffer.h" />
-    <ClInclude Include="Singleton.h" />
-    <ClInclude Include="StringFormatter.h" />
+    <ClInclude Include="_3D어플리케이션.h">
+      <Filter>MyApplication</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DApplication.h">
+      <Filter>D3DFramework</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DApplication2D.h">
+      <Filter>D3DFramework</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DApplication3D.h">
+      <Filter>D3DFramework</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DMacro.h">
+      <Filter>D3DFramework</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DManager.h">
+      <Filter>D3DFramework</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DProperties.h">
+      <Filter>D3DFramework</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>D3DFramework</Filter>
+    </ClInclude>
+    <ClInclude Include="StringFormatter.h">
+      <Filter>D3DFramework</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DCamera.h">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DCube.h">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DObject.h">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DObjectFactory.h">
+      <Filter>D3DFramework\D3DData</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DPoint.h">
+      <Filter>D3DFramework\D3DData</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DVertex.h">
+      <Filter>D3DFramework\D3DData</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DVertexBuffer.h">
+      <Filter>D3DFramework\D3DData</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DIndexBuffer.h">
+      <Filter>D3DFramework\D3DData</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DSize.h">
+      <Filter>D3DFramework\D3DData</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>MyApplication</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="MyApplication">
+      <UniqueIdentifier>{489dd4c4-309f-4a24-8570-e2424a2465cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3DFramework">
+      <UniqueIdentifier>{f6343698-02e5-4e19-b9ef-3a35feb584d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3DFramework\D3DObject">
+      <UniqueIdentifier>{c5668082-b7a3-49f9-b313-dccf88681e8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3DFramework\D3DData">
+      <UniqueIdentifier>{50eeada4-39f7-4928-b168-9b38987e4b71}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

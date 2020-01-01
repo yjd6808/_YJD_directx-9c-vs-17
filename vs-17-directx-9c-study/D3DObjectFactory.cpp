@@ -7,9 +7,9 @@ D3DObjectFactory::D3DObjectFactory(LPDIRECT3DDEVICE9 d3dDev) :
 }
 
 
-D3DCamera* D3DObjectFactory::CreateCamera()
+D3DCamera* D3DObjectFactory::CreateCamera(HWND hwnd)
 {
-	return new D3DCamera(m_pD3DDevice);
+	return new D3DCamera(m_pD3DDevice, hwnd);
 }
 
 D3DCube* D3DObjectFactory::CreateCube(float length)

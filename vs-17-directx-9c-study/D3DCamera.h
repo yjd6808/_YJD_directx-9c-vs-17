@@ -7,8 +7,10 @@
 class D3DCamera : public D3DObject
 {
 	CREATE_D3DOBJECT_CONSTRUCTOR(D3DCamera);
+	CREATE_D3DOBJECT_CONSTRUCTOR_WITH_1PARAM(D3DCamera, HWND, hwnd, m_hWnd);
 	CREATE_D3DOBJECT_DESTRUCTOR(D3DCamera);
 
+	void SetView();
 	void SetViewport();
 	void SetProjection();
 public:

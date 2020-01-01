@@ -37,7 +37,7 @@ bool D3DApplication3D::Init()
 
 	/* z버퍼를 사용하겠다 */
 	m_pD3DDevice->SetRenderState(D3DRS_ZENABLE, true);
-	m_camera = m_objectFactory->CreateCamera();
+	m_camera = m_objectFactory->CreateCamera(m_hWnd);
 	
 
 	OnInit();
@@ -62,11 +62,11 @@ void D3DApplication3D::Render()
 		return;
 
 	//z버퍼도 비워준다.
-	m_pD3DDevice->Clear(0, nullptr, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(0, 255, 0), 1.0f, 0);
+	m_pD3DDevice->Clear(0, nullptr, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
 
 	m_pD3DDevice->BeginScene();
 	OnRender();
-	m_camera->OnUpdate();
+	m_camera->OnRender();
 	for (auto iter = m_objects.begin(); iter != m_objects.end(); iter++)
 		iter->second->OnRender();
 	m_pD3DDevice->EndScene();

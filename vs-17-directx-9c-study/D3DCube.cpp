@@ -22,9 +22,9 @@ void D3DCube::OnInit()
 	m_vertexes.push_back({ D3DPoint3D {halfLength, -halfLength, -halfLength}, D3DCOLOR_WHITE });
 	m_vertexes.push_back({ D3DPoint3D {-halfLength, -halfLength, -halfLength}, D3DCOLOR_WHITE });
 
-	D3DPoint3D vertexArray[8];
+	D3DVertex3D vertexArray[8];
 	for (int i = 0; i < m_vertexes.size(); i++)
-		vertexArray[i] = vertexArray[i];
+		memcpy(&vertexArray[i], &m_vertexes[i], sizeof(D3DVertex3D));
 
 	WORD indexArray[] = {
 		0, 1, 2,
@@ -44,33 +44,14 @@ void D3DCube::OnInit()
 	
 
 	//정점 버퍼 생성
-	m_pD3DDevice->CreateVertexBuffer(
-		m_vertexes.size() * sizeof(D3DPoint3D),
-		0,
-		D3DFVF3D,
-		D3DPOOL_DEFAULT,
-		&m_pVertextBuffer,
-		nullptr);
+	D3DCREATE_VERTEXBUFFER(m_pD3DDevice, m_pVertextBuffer, vertexArray);
 
-	void* vertices;
-	m_pVertextBuffer->Lock(0, m_vertexes.size() * sizeof(D3DPoint3D), &vertices, 0);
-	memcpy(vertices, vertexArray, m_vertexes.size() * sizeof(D3DPoint3D));
-	m_pVertextBuffer->Unlock();
+	//정점 버퍼에 정점데이터 복사
+	D3DLOCKCOPY(m_pVertextBuffer, vertexArray);
 
 	//인덱스 버퍼 생성
-	m_pD3DDevice->CreateIndexBuffer(
-		sizeof(indexArray),
-		0,
-		D3DFMT_INDEX16,
-		D3DPOOL_DEFAULT,
-		&m_pIndexBuffer,
-		nullptr);
-
-
-	void* indexes;
-	m_pIndexBuffer->Lock(0, sizeof(indexArray), &indexes, 0);
-	memcpy(indexes, indexArray, sizeof(indexArray));
-	m_pIndexBuffer->Unlock();
+	D3DCREATE_INDEXBUFFER(m_pD3DDevice, m_pIndexBuffer, indexArray);
+	D3DLOCKCOPY(m_pIndexBuffer, indexArray);
 }
 
 void D3DCube::OnUpdate()

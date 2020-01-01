@@ -52,3 +52,30 @@ vname_2(pname_2) {}
 #define D3DCOLOR_RED	0xffff0000
 #define D3DCOLOR_GREEN	0xff00ff00
 #define D3DCOLOR_BLUE	0xff0000ff
+
+
+//dstD3DBuffer : 인덱스버퍼나 정점버퍼
+//srcArray : 복사할 데이터
+//일부러 중괄호를 줘서 내부에 지역변수를 만들어 중복된 이름을 방지함
+#define D3DLOCKCOPY(dstD3DBuffer, srcArray)  { void* voidBuffer; \
+dstD3DBuffer->Lock(0, sizeof(srcArray), &voidBuffer, 0); \
+memcpy(voidBuffer, srcArray, sizeof(srcArray)); \
+dstD3DBuffer->Unlock(); }
+
+#define D3DCREATE_VERTEXBUFFER(d3dDevice, vertexBuffer,  vertexArray) \
+d3dDevice->CreateVertexBuffer( \
+	sizeof(vertexArray), \
+	0, \
+	D3DFVF3D, \
+	D3DPOOL_DEFAULT, \
+	&vertexBuffer, \
+	nullptr); 
+
+#define D3DCREATE_INDEXBUFFER(d3dDevice, indexBuffer,  indexArray) \
+d3dDevice->CreateIndexBuffer( \
+	sizeof(indexArray), \
+	0, \
+	D3DFMT_INDEX16, \
+	D3DPOOL_DEFAULT, \
+	&indexBuffer, \
+	nullptr);

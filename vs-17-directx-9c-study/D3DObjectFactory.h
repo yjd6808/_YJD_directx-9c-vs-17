@@ -9,7 +9,7 @@ public:
 	D3DObjectFactory(LPDIRECT3DDEVICE9 d3dDev);
 
 	
-	D3DCamera* CreateCamera();
+	D3DCamera* CreateCamera(HWND hwnd);
 	D3DCube* CreateCube(float length);
 	/*T CreateRectangleBox(float x_length, float y_length, float z_length);
 	T CreateSphere(float radious);*/

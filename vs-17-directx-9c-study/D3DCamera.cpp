@@ -1,13 +1,17 @@
-#include <d3dx9.h>
-
+#include "common.h"
 #include "D3DCamera.h"
 #include "D3DProperties.h"
 
+
 void D3DCamera::OnInit()
 {
-	m_position = { 0.0f, 10.0f, -5.0f };
+	m_position = { 5, 8, -10.0f };
 	m_lookAt = { 0.0f, 0.0f, 0.0 };
 	m_stdAxis = { 0.0f, 1.0f, 0.0f };
+
+	SetView();
+	SetProjection();
+	SetViewport();
 }
 
 void D3DCamera::OnUpdate()
@@ -16,8 +20,8 @@ void D3DCamera::OnUpdate()
 
 void D3DCamera::OnRender()
 {
-	SetViewport();
 	SetProjection();
+	SetViewport();
 }
 
 void D3DCamera::OnRelease()
@@ -34,7 +38,7 @@ void D3DCamera::SetPosition(const float x, const float y, const float z)
 }
 
 
-void D3DCamera::SetViewport()
+void D3DCamera::SetView()
 {
 	D3DXVECTOR3 pos;
 	D3DXVECTOR3 at;
@@ -55,6 +59,23 @@ void D3DCamera::SetViewport()
 	m_pD3DDevice->SetTransform(D3DTS_VIEW, &m_viewMat);
 
 
+}
+
+void D3DCamera::SetViewport()
+{
+	RECT windowRect = { 0 };
+	D3DVIEWPORT9 viewPort;
+
+	GetClientRect(m_hWnd, &windowRect);
+
+	viewPort.X = 0;
+	viewPort.Y = 0;
+	viewPort.Width = windowRect.right - windowRect.left;
+	viewPort.Height = windowRect.bottom - windowRect.top;
+	viewPort.MinZ = 0.0f;
+	viewPort.MaxZ = 1.0f;
+
+	m_pD3DDevice->SetViewport(&viewPort);
 }
 
 void D3DCamera::SetProjection()
