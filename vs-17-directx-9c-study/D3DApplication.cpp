@@ -1,5 +1,8 @@
 #include "D3DApplication.h"
 #include "D3DProperties.h"
+#include "Timer.h"
+
+
 
 LRESULT CALLBACK D3DApplication::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {

@@ -24,6 +24,7 @@
     <ClCompile Include="D3DApplication3D.cpp" />
     <ClCompile Include="D3DAxis.cpp" />
     <ClCompile Include="D3DCamera.cpp" />
+    <ClCompile Include="D3DConsole.cpp" />
     <ClCompile Include="D3DCube.cpp" />
     <ClCompile Include="D3DManager.cpp" />
     <ClCompile Include="D3DObject.cpp" />
@@ -31,9 +32,12 @@
     <ClCompile Include="D3DPoint.cpp" />
     <ClCompile Include="D3DSize.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="_3D어플리케이션.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="D3DConsole.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="D3DApplication.h" />
     <ClInclude Include="D3DApplication2D.h" />
@@ -123,6 +127,8 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>d3d9.lib;d3dx9.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+      <EntryPointSymbol>wWinMainCRTStartup</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

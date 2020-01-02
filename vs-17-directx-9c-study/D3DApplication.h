@@ -42,6 +42,8 @@ protected:
 	HWND		m_hWnd;
 	WNDCLASSEX	m_winInfo;
 	RECT		m_rectangle;
+	
+	const float	m_framePerSec = 1 / 60.0f;
 protected:
 	std::unordered_map<D3DObject*, D3DObject*> m_objects;
 	friend class D3DManager;

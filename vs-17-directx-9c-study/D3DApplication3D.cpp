@@ -37,6 +37,17 @@ bool D3DApplication3D::Init()
 
 	/* z버퍼를 사용하겠다 */
 	m_pD3DDevice->SetRenderState(D3DRS_ZENABLE, true);
+
+	/* FVF 설정 */
+	m_pD3DDevice->SetFVF(D3DFVF3D);
+
+	/* 테두리만 보여주겠다. */
+	m_pD3DDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
+
+	/* 컬링을 사용하겠다. */
+	m_pD3DDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+	
+
 	m_camera = m_objectFactory->CreateCamera(m_hWnd);
 	
 

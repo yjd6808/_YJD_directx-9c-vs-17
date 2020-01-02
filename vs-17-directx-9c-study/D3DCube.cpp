@@ -63,14 +63,14 @@ void D3DCube::OnRender()
 	D3DXMATRIX matWorld;
 	D3DXMatrixIdentity(&matWorld); //단위행렬로 초기화
 
-	m_pD3DDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+	
 	m_pD3DDevice->SetRenderState(D3DRS_LIGHTING, false);
 	m_pD3DDevice->SetTransform(D3DTS_WORLD, &matWorld);
 	m_pD3DDevice->SetStreamSource(0, m_pVertextBuffer, 0, sizeof(D3DVertex3D));
 	m_pD3DDevice->SetIndices(m_pIndexBuffer);
 	m_pD3DDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_vertexes.size(), 0, 6 * 2);
 	m_pD3DDevice->SetRenderState(D3DRS_LIGHTING, true);
-	m_pD3DDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+	
 }
 
 void D3DCube::OnRelease()

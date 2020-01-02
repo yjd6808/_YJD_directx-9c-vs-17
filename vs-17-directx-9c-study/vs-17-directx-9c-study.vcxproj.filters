@@ -40,6 +40,10 @@
     <ClCompile Include="D3DAxis.cpp">
       <Filter>D3DFramework\D3DObject</Filter>
     </ClCompile>
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="D3DConsole.cpp">
+      <Filter>D3DConsole</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_3D어플리케이션.h">
@@ -96,11 +100,13 @@
     <ClInclude Include="D3DSize.h">
       <Filter>D3DFramework\D3DData</Filter>
     </ClInclude>
-    <ClInclude Include="common.h">
-      <Filter>MyApplication</Filter>
-    </ClInclude>
     <ClInclude Include="D3DAxis.h">
       <Filter>D3DFramework\D3DObject</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="D3DConsole.h">
+      <Filter>D3DConsole</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +121,9 @@
     </Filter>
     <Filter Include="D3DFramework\D3DData">
       <UniqueIdentifier>{50eeada4-39f7-4928-b168-9b38987e4b71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3DConsole">
+      <UniqueIdentifier>{019b3912-0fe3-474a-ba13-9916a4ad4ccb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

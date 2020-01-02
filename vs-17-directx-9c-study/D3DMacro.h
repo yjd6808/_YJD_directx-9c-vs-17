@@ -51,7 +51,10 @@ vname_2(pname_2) {}
 #define D3DCOLOR_BLACK	0xff000000
 #define D3DCOLOR_RED	0xffff0000
 #define D3DCOLOR_GREEN	0xff00ff00
+#define D3DCOLOR_YELLOW 0xffffff00
+#define D3DCOLOR_VIOLET 0xffff00ff
 #define D3DCOLOR_BLUE	0xff0000ff
+#define D3DCOLOR_CYAN	0xff00ffff
 
 
 //dstD3DBuffer : 인덱스버퍼나 정점버퍼

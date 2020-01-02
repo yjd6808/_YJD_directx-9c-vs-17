@@ -9,16 +9,16 @@ void D3DAxis::OnInit()
 	float halfLength = m_length / 2.0f;
 
 	//รเ
-	m_vertexes.push_back({ D3DPoint3D {-halfLength, 0.0f, 0.0f}, D3DCOLOR_WHITE });
-	m_vertexes.push_back({ D3DPoint3D {halfLength, 0.0f, 0.0f}, D3DCOLOR_WHITE });
+	m_vertexes.push_back({ D3DPoint3D {-halfLength, 0.0f, 0.0f}, D3DCOLOR_RED });
+	m_vertexes.push_back({ D3DPoint3D {halfLength, 0.0f, 0.0f}, D3DCOLOR_RED });
 
 	//yรเ
-	m_vertexes.push_back({ D3DPoint3D {0.0f, -halfLength, 0.0f}, D3DCOLOR_WHITE });
-	m_vertexes.push_back({ D3DPoint3D {0.0f, halfLength, 0.0f}, D3DCOLOR_WHITE });
+	m_vertexes.push_back({ D3DPoint3D {0.0f, -halfLength, 0.0f}, D3DCOLOR_GREEN });
+	m_vertexes.push_back({ D3DPoint3D {0.0f, halfLength, 0.0f}, D3DCOLOR_GREEN });
 
 	//zรเ
-	m_vertexes.push_back({ D3DPoint3D { 0.0f, 0.0f, -halfLength}, D3DCOLOR_WHITE });
-	m_vertexes.push_back({ D3DPoint3D { 0.0f, 0.0f, halfLength}, D3DCOLOR_WHITE });
+	m_vertexes.push_back({ D3DPoint3D { 0.0f, 0.0f, -halfLength}, D3DCOLOR_CYAN });
+	m_vertexes.push_back({ D3DPoint3D { 0.0f, 0.0f, halfLength}, D3DCOLOR_CYAN });
 
 	D3DVertex3D vertexArray[6];
 	for (int i = 0; i < m_vertexes.size(); i++)
@@ -43,8 +43,7 @@ void D3DAxis::OnRender()
 	m_pD3DDevice->SetRenderState(D3DRS_LIGHTING, false);
 	m_pD3DDevice->SetTransform(D3DTS_WORLD, &matWorld);
 	m_pD3DDevice->SetStreamSource(0, m_pVertextBuffer, 0, sizeof(D3DVertex3D));
-	m_pD3DDevice->SetFVF(D3DFVF3D);
-	m_pD3DDevice->DrawPrimitive(D3DPT_TRIANGLELIST, 0, 3);
+	m_pD3DDevice->DrawPrimitive(D3DPT_LINELIST, 0, 3);
 	m_pD3DDevice->SetRenderState(D3DRS_LIGHTING, true);
 }
 
