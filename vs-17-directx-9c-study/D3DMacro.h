@@ -28,15 +28,28 @@ className(LPDIRECT3DDEVICE9 d3dDev, ptype pname) : D3DObject(d3dDev), vname(pnam
 
 #define CREATE_D3DOBJECT_CONSTRUCTOR_WITH_2PARAM(className, \
 ptype_1, pname_1, vname_1, \
-ptype_2, pname_2, vname_2) private: \
-ptype_1 vname_1;\
-ptype_2 pname_2;\
+ptype_2, pname_2, vname_2) \
+private: \
+ptype_1 vname_1; \
+ptype_2 vname_2; \
 public: \
-className(LPDIRECT3DDEVICE9 d3dDev, \
-ptype_1, pname_1, \
-ptype_2, pname_2) : D3DObject(d3dDev), \
+className(LPDIRECT3DDEVICE9 d3dDev, ptype_1 pname_1, ptype_2 pname_2) : D3DObject(d3dDev), \
 vname_1(pname_1), \
 vname_2(pname_2) {}
+
+#define CREATE_D3DOBJECT_CONSTRUCTOR_WITH_3PARAM(className, \
+ptype_1, pname_1, vname_1, \
+ptype_2, pname_2, vname_2, \
+ptype_3, pname_3, vname_3) \
+private: \
+ptype_1 vname_1; \
+ptype_2 vname_2; \
+ptype_3 vname_3; \
+public: \
+className(LPDIRECT3DDEVICE9 d3dDev, ptype_1 pname_1, ptype_2 pname_2, ptype_3 pname_3) : D3DObject(d3dDev), \
+vname_1(pname_1), \
+vname_2(pname_2), \
+vname_3(pname_3) {}
 
 #define CREATE_D3DOBJECT_DESTRUCTOR(className) public: \
 ~className() {} 
@@ -65,6 +78,11 @@ dstD3DBuffer->Lock(0, sizeof(srcArray), &voidBuffer, 0); \
 memcpy(voidBuffer, srcArray, sizeof(srcArray)); \
 dstD3DBuffer->Unlock(); }
 
+#define D3DLOCKCOPY_DYNAMIC(dstD3DBuffer, srcArray, srcArraySize)  { void* voidBuffer; \
+dstD3DBuffer->Lock(0, srcArraySize, &voidBuffer, 0); \
+memcpy(voidBuffer, srcArray, srcArraySize); \
+dstD3DBuffer->Unlock(); }
+
 #define D3DCREATE_VERTEXBUFFER(d3dDevice, vertexBuffer,  vertexArray) \
 d3dDevice->CreateVertexBuffer( \
 	sizeof(vertexArray), \
@@ -82,3 +100,25 @@ d3dDevice->CreateIndexBuffer( \
 	D3DPOOL_DEFAULT, \
 	&indexBuffer, \
 	nullptr);
+
+#define D3DCREATE_VERTEXBUFFER_DYNAMIC(d3dDevice, vertexBuffer,  vertexArray, arraySize) \
+d3dDevice->CreateVertexBuffer( \
+	arraySize, \
+	0, \
+	D3DFVF3D, \
+	D3DPOOL_DEFAULT, \
+	&vertexBuffer, \
+	nullptr); 
+
+#define D3DCREATE_INDEXBUFFER_DYNAMIC(d3dDevice, indexBuffer,  indexArray, indexArraySize) \
+d3dDevice->CreateIndexBuffer( \
+	indexArraySize, \
+	0, \
+	D3DFMT_INDEX16, \
+	D3DPOOL_DEFAULT, \
+	&indexBuffer, \
+	nullptr);
+
+
+#define D3DSAFE_DELETE(data) do { delete data; data = nullptr; } while(0)
+#define D3DSAFE_DELETE_ARRAY(arr) do { delete[] arr; arr = nullptr; } while(0)

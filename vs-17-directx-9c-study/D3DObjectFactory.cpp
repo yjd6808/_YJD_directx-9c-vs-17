@@ -17,9 +17,14 @@ D3DCube* D3DObjectFactory::CreateCube(float length)
 	return new D3DCube(m_pD3DDevice, length);
 }
 
-D3DAxis * D3DObjectFactory::CreateAxis(float length)
+D3DAxis* D3DObjectFactory::CreateAxis(float length)
 {
 	return new D3DAxis(m_pD3DDevice, length);
+}
+
+D3DPlane* D3DObjectFactory::CreatePlane(int width, int height, float squreSideLength)
+{
+	return new D3DPlane(m_pD3DDevice, width, height, squreSideLength);
 }
 
 

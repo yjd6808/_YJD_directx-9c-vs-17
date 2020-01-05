@@ -20,8 +20,7 @@ void D3DCamera::OnUpdate()
 
 void D3DCamera::OnRender()
 {
-	SetProjection();
-	SetViewport();
+	SetView();
 }
 
 void D3DCamera::OnRelease()

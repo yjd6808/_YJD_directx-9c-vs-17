@@ -13,12 +13,12 @@ class D3DCamera : public D3DObject
 	void SetView();
 	void SetViewport();
 	void SetProjection();
-public:
+protected:
 	virtual void OnInit();
 	virtual void OnUpdate();
 	virtual void OnRender();
 	virtual void OnRelease();
-
+public:
 	virtual void SetPosition(const D3DPoint3D& point);
 	virtual void SetPosition(const float x, const float y, const float z);
 protected:
@@ -28,4 +28,6 @@ protected:
 	D3DXMATRIXA16 m_projMat;	//투영행렬
 	//화면상에 투영되는 정보가 나타남
 	float m_viewDegree;		// 시야각
+
+	friend class D3DApplication3D;
 };

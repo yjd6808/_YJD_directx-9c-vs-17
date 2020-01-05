@@ -44,6 +44,15 @@
     <ClCompile Include="D3DConsole.cpp">
       <Filter>D3DConsole</Filter>
     </ClCompile>
+    <ClCompile Include="D3DRotation.cpp">
+      <Filter>D3DFramework\D3DData</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DScale.cpp">
+      <Filter>D3DFramework\D3DData</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DPlane.cpp">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_3D어플리케이션.h">
@@ -82,9 +91,6 @@
     <ClInclude Include="D3DObject.h">
       <Filter>D3DFramework\D3DObject</Filter>
     </ClInclude>
-    <ClInclude Include="D3DObjectFactory.h">
-      <Filter>D3DFramework\D3DData</Filter>
-    </ClInclude>
     <ClInclude Include="D3DPoint.h">
       <Filter>D3DFramework\D3DData</Filter>
     </ClInclude>
@@ -108,6 +114,21 @@
     <ClInclude Include="D3DConsole.h">
       <Filter>D3DConsole</Filter>
     </ClInclude>
+    <ClInclude Include="D3DRotation.h">
+      <Filter>D3DFramework\D3DData</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DScale.h">
+      <Filter>D3DFramework\D3DData</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DAnimation.h">
+      <Filter>D3DFramework\D3DAnimation</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DPlane.h">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DObjectFactory.h">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="MyApplication">
@@ -124,6 +145,9 @@
     </Filter>
     <Filter Include="D3DConsole">
       <UniqueIdentifier>{019b3912-0fe3-474a-ba13-9916a4ad4ccb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3DFramework\D3DAnimation">
+      <UniqueIdentifier>{c07c30c1-b698-4aea-b652-06ba4cf3e415}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

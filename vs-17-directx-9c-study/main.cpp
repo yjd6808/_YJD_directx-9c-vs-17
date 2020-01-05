@@ -10,7 +10,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	D3DConsole::Initialize();
 	D3DConsole::MoveTo(0, 0);
 	D3DConsole::SetWidth(300);
-	D3DConsole::SetHeight(100);
+	D3DConsole::SetHeight(200);
 
 	return D3DManager::StartApplication(new _3D어플리케이션(hInstance, hPrevInstance, lpCmdLine, nCmdShow));
 }

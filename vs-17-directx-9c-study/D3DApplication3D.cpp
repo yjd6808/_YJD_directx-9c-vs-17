@@ -45,7 +45,7 @@ bool D3DApplication3D::Init()
 	m_pD3DDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
 
 	/* 컬링을 사용하겠다. */
-	m_pD3DDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+	m_pD3DDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 	
 
 	m_camera = m_objectFactory->CreateCamera(m_hWnd);
@@ -80,6 +80,8 @@ void D3DApplication3D::Render()
 	m_camera->OnRender();
 	for (auto iter = m_objects.begin(); iter != m_objects.end(); iter++)
 		iter->second->OnRender();
+
+	
 	m_pD3DDevice->EndScene();
 	m_pD3DDevice->Present(nullptr, nullptr, nullptr, nullptr);
 }

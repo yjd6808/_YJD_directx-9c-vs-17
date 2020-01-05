@@ -15,7 +15,7 @@ private:
 	std::vector<D3DVertex3D> m_vertexes;
 	LPDIRECT3DVERTEXBUFFER9  m_pVertextBuffer;
 	LPDIRECT3DINDEXBUFFER9 m_pIndexBuffer;
-public:
+protected:
 	virtual void OnInit();
 	virtual void OnUpdate();
 	virtual void OnRender();

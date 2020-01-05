@@ -29,14 +29,21 @@
     <ClCompile Include="D3DManager.cpp" />
     <ClCompile Include="D3DObject.cpp" />
     <ClCompile Include="D3DObjectFactory.cpp" />
+    <ClCompile Include="D3DPlane.cpp" />
     <ClCompile Include="D3DPoint.cpp" />
+    <ClCompile Include="D3DRotation.cpp" />
+    <ClCompile Include="D3DScale.cpp" />
     <ClCompile Include="D3DSize.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="_3D어플리케이션.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="D3DAnimation.h" />
     <ClInclude Include="D3DConsole.h" />
+    <ClInclude Include="D3DPlane.h" />
+    <ClInclude Include="D3DRotation.h" />
+    <ClInclude Include="D3DScale.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="D3DApplication.h" />
