@@ -53,6 +53,15 @@
     <ClCompile Include="D3DPlane.cpp">
       <Filter>D3DFramework\D3DObject</Filter>
     </ClCompile>
+    <ClCompile Include="D3DText.cpp">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DColor.cpp">
+      <Filter>D3DFramework\D3DData</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DMouseEventListener.cpp">
+      <Filter>D3DFramework\D3DEvent</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_3D어플리케이션.h">
@@ -129,6 +138,27 @@
     <ClInclude Include="D3DObjectFactory.h">
       <Filter>D3DFramework\D3DObject</Filter>
     </ClInclude>
+    <ClInclude Include="D3DText.h">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DColor.h">
+      <Filter>D3DFramework\D3DData</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DEventListener.h">
+      <Filter>D3DFramework\D3DEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DMouseEventListener.h">
+      <Filter>D3DFramework\D3DEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DEvent.h">
+      <Filter>D3DFramework\D3DEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DMouseEvent.h">
+      <Filter>D3DFramework\D3DEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DKeyboardEvent.h">
+      <Filter>D3DFramework\D3DEvent</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="MyApplication">
@@ -148,6 +178,9 @@
     </Filter>
     <Filter Include="D3DFramework\D3DAnimation">
       <UniqueIdentifier>{c07c30c1-b698-4aea-b652-06ba4cf3e415}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3DFramework\D3DEvent">
+      <UniqueIdentifier>{b7b85ed3-fbf4-4b0c-8391-6676391f489a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -5,7 +5,7 @@
 
 void D3DCamera::OnInit()
 {
-	m_position = { 5, 8, -10.0f };
+	m_position = { 0, 0, -10.0f };
 	m_lookAt = { 0.0f, 0.0f, 0.0 };
 	m_stdAxis = { 0.0f, 1.0f, 0.0f };
 
@@ -16,6 +16,26 @@ void D3DCamera::OnInit()
 
 void D3DCamera::OnUpdate()
 {
+	if (GetAsyncKeyState('A')) {
+		m_position.x -= 0.1f;
+		m_lookAt.x -= 0.1f;
+	}
+
+	if (GetAsyncKeyState('D')) {
+		m_position.x += 0.1f;
+		m_lookAt.x += 0.1f;
+	}
+
+	if (GetAsyncKeyState('W')) {
+		m_position.y += 0.1f;
+		m_lookAt.y += 0.1f;
+	}
+
+	if (GetAsyncKeyState('S')) {
+		m_position.y -= 0.1f;
+		m_lookAt.y -= 0.1f;
+	}
+
 }
 
 void D3DCamera::OnRender()

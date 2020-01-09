@@ -27,4 +27,9 @@ D3DPlane* D3DObjectFactory::CreatePlane(int width, int height, float squreSideLe
 	return new D3DPlane(m_pD3DDevice, width, height, squreSideLength);
 }
 
+D3DText * D3DObjectFactory::CreateText(std::string text)
+{
+	return new D3DText(m_pD3DDevice, text);
+}
+
 

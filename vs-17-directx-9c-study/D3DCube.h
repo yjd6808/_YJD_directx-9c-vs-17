@@ -7,6 +7,8 @@
 #include "D3DObject.h"
 #include "D3DMacro.h"
 
+ 
+
 class D3DCube : public D3DObject
 {
 	CREATE_D3DOBJECT_CONSTRUCTOR_WITH_1PARAM(D3DCube, float, length, m_length);

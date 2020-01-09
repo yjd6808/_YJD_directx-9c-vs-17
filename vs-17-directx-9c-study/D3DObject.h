@@ -16,6 +16,11 @@ protected:
 	virtual void OnUpdate() = 0;
 	virtual void OnRender() = 0;
 	virtual void OnRelease() = 0;
+
+	virtual void OnKeyPressed(KeyEvent& event) = 0;
+	virtual void OnKeyReleased(KeyEvent& event) = 0;
+	virtual void OnMouse(MouseEvent args) = 0;
+	virtual void OnMouseMoved(MouseEvent args) = 0;
 public:
 	virtual void SetPosition(const D3DPoint3D& point);
 	virtual void SetPosition(const float x, const float y, const float z);
