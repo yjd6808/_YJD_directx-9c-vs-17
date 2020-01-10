@@ -62,6 +62,9 @@
     <ClCompile Include="D3DMouseEventListener.cpp">
       <Filter>D3DFramework\D3DEvent</Filter>
     </ClCompile>
+    <ClCompile Include="D3DEventDispatcher.cpp">
+      <Filter>D3DFramework\D3DEvent</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_3D어플리케이션.h">
@@ -157,6 +160,9 @@
       <Filter>D3DFramework\D3DEvent</Filter>
     </ClInclude>
     <ClInclude Include="D3DKeyboardEvent.h">
+      <Filter>D3DFramework\D3DEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DEventDispatcher.h">
       <Filter>D3DFramework\D3DEvent</Filter>
     </ClInclude>
   </ItemGroup>

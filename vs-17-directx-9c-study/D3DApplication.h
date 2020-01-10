@@ -46,7 +46,8 @@ protected:
 	const float	m_framePerSec = 1 / 60.0f;
 protected:
 	std::unordered_map<D3DObject*, D3DObject*> m_objects;
-	std::unordered_map<D3DObject*, D3DObject*> m_eventListeners;
+	D3DEventDispatcher* m_eventDispatcher;
+
 	friend class D3DManager;
 };
 

@@ -1,18 +1,34 @@
 #include "D3DApplication.h"
 #include "D3DProperties.h"
+#include "D3DEventDispatcher.h"
 #include "Timer.h"
+#include "D3DManager.h"
+#include "D3DMouseEvent.h"
+#include "D3DKeyboardEvent.h"
 
+#include <iostream>
+
+using namespace std;
 
 
 LRESULT CALLBACK D3DApplication::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+	static D3DApplication* currentApplication = D3DManager::GetApplication();
+	static D3DEventDispatcher* eventDispatcher = currentApplication->m_eventDispatcher;
 	switch (message)
 	{
 	case WM_DESTROY:
 	{
 		PostQuitMessage(0);
 		return 0;
-	} break;
+	} 
+	break;
+	case WM_MOUSEMOVE:
+	{
+		D3DMouseEvent mouseEvent(D3DMouseEvent::MouseEventType::MOUSE_MOVE);
+		eventDispatcher->OnMouseUpdate(&mouseEvent);
+	}
+	break;
 	}
 
 	return DefWindowProc(hWnd, message, wParam, lParam);
@@ -27,6 +43,8 @@ m_hPrevInstance(hPrevInstance),
 m_lpCmdLine(lpCmdLine),
 m_nCmdShow(nCmdShow)
 {
+	m_eventDispatcher = new D3DEventDispatcher();
+
 	ZeroMemory(&m_winInfo, sizeof(WNDCLASSEX));
 
 	m_winInfo.cbSize = sizeof(WNDCLASSEX);
@@ -45,6 +63,7 @@ D3DApplication::~D3DApplication()
 		delete iter->second;
 
 	m_objects.clear();
+	delete m_eventDispatcher;
 }
 
 void D3DApplication::Add(D3DObject * obj)
