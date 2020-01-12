@@ -9,13 +9,14 @@ class D3DManager
 {
 public:
 	int RunApplication();
-public:
+private:
 	D3DManager(D3DApplication* application);
 	~D3DManager();
 public:
 	static D3DManager* s_applicationInstance;
 
 	static int StartApplication(D3DApplication* application);
+	static D3DApplication* GetApplication();
 protected:
 	D3DApplication* m_application;
 };

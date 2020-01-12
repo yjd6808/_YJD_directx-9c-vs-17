@@ -1,21 +1,121 @@
 #include "D3DApplication.h"
 #include "D3DProperties.h"
+#include "D3DEventDispatcher.h"
 #include "Timer.h"
+#include "D3DManager.h"
+#include "D3DMouseEvent.h"
+#include "D3DKeyboardEvent.h"
 
+#include <iostream>
+
+using namespace std;
 
 
 LRESULT CALLBACK D3DApplication::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+	static D3DApplication* currentApplication = D3DManager::GetApplication();
+	static D3DEventDispatcher* eventDispatcher = currentApplication->m_eventDispatcher;
+
+	
 	switch (message)
 	{
 	case WM_DESTROY:
 	{
 		PostQuitMessage(0);
 		return 0;
-	} break;
+	}
+	break;
+	case WM_MOUSEMOVE:
+	case WM_LBUTTONDOWN:
+	case WM_MBUTTONDOWN:
+	case WM_RBUTTONDOWN:
+	case WM_LBUTTONUP:
+	case WM_MBUTTONUP:
+	case WM_RBUTTONUP:
+	case WM_MOUSEWHEEL:
+	{
+		D3DMouseEvent mouseEvent;
+		UpdateMouseEvent(message, &mouseEvent);
+	}
+	break;
+	case WM_KEYDOWN:
+	case WM_KEYUP:
+	case WM_SYSKEYDOWN:
+	case WM_SYSKEYUP:
+	{
+		D3DKeyboardEvent keyboardEvent;
+		UpdateKeyboardEvent(message, wParam, &keyboardEvent);
+	}
+	break;
 	}
 
 	return DefWindowProc(hWnd, message, wParam, lParam);
+}
+
+void D3DApplication::UpdateMouseEvent(UINT mouseMessage, D3DMouseEvent * mouseEvent)
+{
+	static D3DApplication* currentApplication = D3DManager::GetApplication();
+	static D3DEventDispatcher* eventDispatcher = currentApplication->m_eventDispatcher;
+
+	POINT mousePos;
+	if (GetCursorPos(&mousePos) && ScreenToClient(currentApplication->m_hWnd, &mousePos)) 
+	{
+		mouseEvent->m_cursorPositionX = mousePos.x;
+		mouseEvent->m_cursorPositionY = mousePos.y;
+	}
+
+	switch (mouseMessage) 
+	{
+	case WM_MOUSEMOVE:
+	mouseEvent->m_mouseEventType = D3DMouseEvent::MouseEventType::MOUSE_MOVE;
+	break;
+	case WM_LBUTTONDOWN: 
+	{
+		mouseEvent->m_mouseEventType = D3DMouseEvent::MouseEventType::MOUSE_DOWN;
+		mouseEvent->m_mouseButton = D3DMouseEvent::MouseButton::BUTTON_LEFT;
+	}
+	break;
+	case WM_RBUTTONDOWN:
+	{
+		mouseEvent->m_mouseEventType = D3DMouseEvent::MouseEventType::MOUSE_DOWN;
+		mouseEvent->m_mouseButton = D3DMouseEvent::MouseButton::BUTTON_RIGHT;
+	}
+	case WM_MBUTTONDOWN:
+	{
+		mouseEvent->m_mouseEventType = D3DMouseEvent::MouseEventType::MOUSE_DOWN;
+		mouseEvent->m_mouseButton = D3DMouseEvent::MouseButton::BUTTON_MIDDLE;
+	}
+	break;
+	case WM_LBUTTONUP:
+	{
+		mouseEvent->m_mouseEventType = D3DMouseEvent::MouseEventType::MOUSE_UP;
+		mouseEvent->m_mouseButton = D3DMouseEvent::MouseButton::BUTTON_LEFT;
+	}
+	break;
+	case WM_RBUTTONUP:
+	{
+		mouseEvent->m_mouseEventType = D3DMouseEvent::MouseEventType::MOUSE_UP;
+		mouseEvent->m_mouseButton = D3DMouseEvent::MouseButton::BUTTON_RIGHT;
+	}
+	case WM_MBUTTONUP:
+	{
+		mouseEvent->m_mouseEventType = D3DMouseEvent::MouseEventType::MOUSE_UP;
+		mouseEvent->m_mouseButton = D3DMouseEvent::MouseButton::BUTTON_MIDDLE;
+	}
+	break;
+	}
+	eventDispatcher->DispatchEvent(mouseEvent);
+}
+
+void D3DApplication::UpdateKeyboardEvent(UINT keyboardMessage, WPARAM keyValue, D3DKeyboardEvent * keyboardEvent)
+{
+	static D3DApplication* currentApplication = D3DManager::GetApplication();
+	static D3DEventDispatcher* eventDispatcher = currentApplication->m_eventDispatcher;
+
+}
+
+void D3DApplication::UpdateWindowEvent(UINT message, D3DWindowEvent * windowEvent)
+{
 }
 
 D3DApplication::D3DApplication(HINSTANCE hInstance,
@@ -27,6 +127,7 @@ m_hPrevInstance(hPrevInstance),
 m_lpCmdLine(lpCmdLine),
 m_nCmdShow(nCmdShow)
 {
+	m_eventDispatcher = new D3DEventDispatcher();
 	ZeroMemory(&m_winInfo, sizeof(WNDCLASSEX));
 
 	m_winInfo.cbSize = sizeof(WNDCLASSEX);
@@ -45,6 +146,7 @@ D3DApplication::~D3DApplication()
 		delete iter->second;
 
 	m_objects.clear();
+	delete m_eventDispatcher;
 }
 
 void D3DApplication::Add(D3DObject * obj)

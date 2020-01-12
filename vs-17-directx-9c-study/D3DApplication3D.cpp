@@ -45,14 +45,13 @@ bool D3DApplication3D::Init()
 	m_pD3DDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
 
 	/* 컬링을 사용하겠다. */
-	m_pD3DDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+	m_pD3DDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 	
 
 	m_camera = m_objectFactory->CreateCamera(m_hWnd);
-	
+	Add(m_camera);
 
 	OnInit();
-	m_camera->OnInit();
 	for (auto iter = m_objects.begin(); iter != m_objects.end(); iter++)
 		iter->second->OnInit();
 
@@ -61,9 +60,11 @@ bool D3DApplication3D::Init()
 
 void D3DApplication3D::Update()
 {
-	m_camera->OnUpdate();
 	for (auto iter = m_objects.begin(); iter != m_objects.end(); iter++)
 		iter->second->OnUpdate();
+
+
+
 	OnUpdate();
 }
 
@@ -77,7 +78,6 @@ void D3DApplication3D::Render()
 
 	m_pD3DDevice->BeginScene();
 	OnRender();
-	m_camera->OnRender();
 	for (auto iter = m_objects.begin(); iter != m_objects.end(); iter++)
 		iter->second->OnRender();
 	m_pD3DDevice->EndScene();
@@ -87,7 +87,6 @@ void D3DApplication3D::Render()
 void D3DApplication3D::Release()
 {
 	OnRelease();
-	m_camera->OnRelease();
 	for (auto iter = m_objects.begin(); iter != m_objects.end(); iter++)
 		iter->second->OnRelease();
 

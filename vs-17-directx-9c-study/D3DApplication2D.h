@@ -20,5 +20,4 @@ protected:
 	virtual void OnUpdate() = 0;
 	virtual void OnRender() = 0;
 	virtual void OnRelease() = 0;
-protected:
 };

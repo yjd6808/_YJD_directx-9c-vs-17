@@ -1,5 +1,6 @@
 #pragma once
 
+
 #define SINGLETONE(className, ...) \
 public: \
 	static className* GetInstance() { \

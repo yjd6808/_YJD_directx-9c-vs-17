@@ -60,14 +60,21 @@ void D3DCube::OnUpdate()
 
 void D3DCube::OnRender()
 {
-	D3DXMATRIX matWorld;
-	D3DXMatrixIdentity(&matWorld); //단위행렬로 초기화
-
-	
 	m_pD3DDevice->SetRenderState(D3DRS_LIGHTING, false);
-	m_pD3DDevice->SetTransform(D3DTS_WORLD, &matWorld);
 	m_pD3DDevice->SetStreamSource(0, m_pVertextBuffer, 0, sizeof(D3DVertex3D));
 	m_pD3DDevice->SetIndices(m_pIndexBuffer);
+
+	D3DXMATRIX scaleMat;
+	D3DXMatrixScaling(&scaleMat, m_scale.x, m_scale.y, m_scale.z);
+
+	D3DXMATRIX rotMat;
+	D3DXMatrixRotationYawPitchRoll(&rotMat, m_rotation.y, m_rotation.x, m_rotation.z);
+
+	D3DXMATRIX translationMat;
+	D3DXMatrixTranslation(&translationMat, m_position.x, m_position.y, m_position.z);
+
+	D3DXMATRIX transformResult = scaleMat * rotMat* translationMat;
+	m_pD3DDevice->SetTransform(D3DTS_WORLD, &transformResult);
 	m_pD3DDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_vertexes.size(), 0, 6 * 2);
 	m_pD3DDevice->SetRenderState(D3DRS_LIGHTING, true);
 	
