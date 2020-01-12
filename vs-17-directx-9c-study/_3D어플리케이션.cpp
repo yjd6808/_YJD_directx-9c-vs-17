@@ -27,6 +27,15 @@ void _3D어플리케이션::OnInit()
 	obj = plane;
 	this->Add(plane);
 	this->Add(m_objectFactory->CreatePlane(3, 2, 0.5f));
+	
+
+	D3DMouseEventListener* listener = new D3DMouseEventListener();
+	listener->onMouseMove = [](D3DMouseEvent* event) 
+	{
+		cout << "onMouseMove Occured " << endl;
+
+	};
+	m_eventDispatcher->AddEventListener(listener);
 }
 
 void _3D어플리케이션::OnUpdate()

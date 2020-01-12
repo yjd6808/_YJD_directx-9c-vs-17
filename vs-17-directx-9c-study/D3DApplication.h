@@ -3,6 +3,11 @@
 #include <Windows.h>
 #include <unordered_map>
 #include "D3DObject.h"
+#include "D3DEventDispatcher.h"
+#include "D3DMouseEventListener.h"
+#include "D3DWindowEventListener.h"
+#include "D3DKeyboardEventListener.h"
+
 
 #define D3DAPPLICATION_ALREADY_RUNNING		-1
 #define D3DAPPLICATION_INITIALIZE_FAILED	-2
@@ -10,11 +15,11 @@
 
 class D3DApplication 
 {
-	static LRESULT CALLBACK WindowProc(HWND hWnd,
-		UINT 메시지,
-		WPARAM wParam,
-		LPARAM lParam);
+	static LRESULT CALLBACK WindowProc(HWND hWnd, UINT 메시지, WPARAM wParam, LPARAM lParam);
 
+	static void UpdateMouseEvent(UINT mouseMessage, D3DMouseEvent* mouseEvent);
+	static void UpdateKeyboardEvent(UINT keyboardMessage, WPARAM keyValue, D3DKeyboardEvent* keyboardEvent);
+	static void UpdateWindowEvent(UINT windowMessage, D3DWindowEvent* windowEvent);
 public:
 	D3DApplication(HINSTANCE hInstance,
 		HINSTANCE hPrevInstance,

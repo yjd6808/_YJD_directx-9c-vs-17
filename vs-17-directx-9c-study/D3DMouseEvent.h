@@ -22,8 +22,10 @@ public:
 		BUTTON_MIDDLE = 2,
 	};
 public:
-	D3DMouseEvent(MouseEventType type) :
+	D3DMouseEvent() :
 		D3DEvent(Type::MOUSE),
+		m_mouseEventType(MouseEventType::MOUSE_NONE),
+		m_mouseButton(MouseButton::BUTTON_UNSET),
 		m_cursorPositionX(0.0f),
 		m_cursorPositionY(0.0f)
 	{
@@ -37,4 +39,6 @@ private:
 	MouseButton m_mouseButton;
 	float m_cursorPositionX;
 	float m_cursorPositionY;
+
+	friend class D3DApplication;
 };

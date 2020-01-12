@@ -1,9 +1,14 @@
 #include "D3DMouseEventListener.h"
 
-void D3DMouseEventListener::OnInit()
+static const std::string _mouseListenerID = "__d3d_mouseListener";
+
+
+D3DMouseEventListener::D3DMouseEventListener() :
+	D3DEventListener(Type::MOUSE, _mouseListenerID)
 {
 }
 
-void D3DMouseEventListener::OnUpdate()
+bool D3DMouseEventListener::OnInit()
 {
+	return true;
 }

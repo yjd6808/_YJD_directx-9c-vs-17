@@ -28,6 +28,7 @@
     <ClCompile Include="D3DConsole.cpp" />
     <ClCompile Include="D3DCube.cpp" />
     <ClCompile Include="D3DEventDispatcher.cpp" />
+    <ClCompile Include="D3DKeyboardEventListener.cpp" />
     <ClCompile Include="D3DManager.cpp" />
     <ClCompile Include="D3DMouseEventListener.cpp" />
     <ClCompile Include="D3DObject.cpp" />
@@ -38,6 +39,7 @@
     <ClCompile Include="D3DScale.cpp" />
     <ClCompile Include="D3DSize.cpp" />
     <ClCompile Include="D3DText.cpp" />
+    <ClCompile Include="D3DWindowEventListener.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="_3D어플리케이션.cpp" />
@@ -49,6 +51,7 @@
     <ClInclude Include="D3DEvent.h" />
     <ClInclude Include="D3DEventListener.h" />
     <ClInclude Include="D3DKeyboardEvent.h" />
+    <ClInclude Include="D3DKeyboardEventListener.h" />
     <ClInclude Include="D3DMouseEvent.h" />
     <ClInclude Include="D3DMouseEventListener.h" />
     <ClInclude Include="D3DPlane.h" />
@@ -56,6 +59,8 @@
     <ClInclude Include="D3DScale.h" />
     <ClInclude Include="D3DText.h" />
     <ClInclude Include="D3DEventDispatcher.h" />
+    <ClInclude Include="D3DWindowEvent.h" />
+    <ClInclude Include="D3DWindowEventListener.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="D3DApplication.h" />

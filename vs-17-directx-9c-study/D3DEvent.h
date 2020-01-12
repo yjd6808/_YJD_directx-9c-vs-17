@@ -6,7 +6,8 @@ public:
 	enum class Type
 	{
 		KEYBOARD,
-		MOUSE
+		MOUSE,
+		WINDOW
 	};
 
 	D3DEvent(Type type) :
