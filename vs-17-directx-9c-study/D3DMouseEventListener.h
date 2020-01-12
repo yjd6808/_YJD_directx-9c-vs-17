@@ -12,7 +12,8 @@ public:
 	static const ListenerID LISTENER_ID;
 	D3DMouseEventListener();
 private:
-	bool OnInit() override;
+	void OnInit() override;
+	void HandleEvent(D3DEvent* event) override;
 public:
 	std::function<void(D3DMouseEvent*)> onMouseMove;
 	std::function<void(D3DMouseEvent*)> onMouseDown;

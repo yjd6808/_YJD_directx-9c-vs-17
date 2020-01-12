@@ -7,8 +7,6 @@ extern class D3DEvent;
 class D3DEventListener
 {
 	typedef std::string ListenerID;
-
-	static const ListenerID ids[] = {};
 public:
 	enum class Type
 	{
@@ -27,7 +25,8 @@ public:
 	Type GetType() { return m_type; }
 	ListenerID GetListenerID() { return m_listenerID; }
 protected:
-	virtual bool OnInit() = 0;
+	virtual void OnInit() = 0;
+	virtual void HandleEvent(D3DEvent* event) = 0;
 protected:
 	ListenerID m_listenerID;
 	std::function<void(D3DEvent*)> m_callback;

@@ -33,9 +33,73 @@ void _3D어플리케이션::OnInit()
 	listener->onMouseMove = [](D3DMouseEvent* event) 
 	{
 		cout << "onMouseMove Occured " << endl;
-
 	};
-	m_eventDispatcher->AddEventListener(listener);
+	listener->onMouseDown = [](D3DMouseEvent* event)
+	{
+		if (event->GetMouseButton() == D3DMouseEvent::MouseButton::BUTTON_LEFT)
+			cout << "왼쪽 버튼 클릭" << endl;
+
+		if (event->GetMouseButton() == D3DMouseEvent::MouseButton::BUTTON_RIGHT)
+			cout << "오른쪽 버튼 클릭" << endl;
+
+		if (event->GetMouseButton() == D3DMouseEvent::MouseButton::BUTTON_MIDDLE)
+			cout << "가운데 버튼 클릭" << endl;
+	};
+	listener->onMouseUp = [](D3DMouseEvent* event)
+	{
+		if (event->GetMouseButton() == D3DMouseEvent::MouseButton::BUTTON_LEFT)
+			cout << "왼쪽 버튼 땜" << endl;
+
+		if (event->GetMouseButton() == D3DMouseEvent::MouseButton::BUTTON_RIGHT)
+			cout << "오른쪽 버튼 땜" << endl;
+
+		if (event->GetMouseButton() == D3DMouseEvent::MouseButton::BUTTON_MIDDLE)
+			cout << "가운데 버튼 땜" << endl;
+	};
+	listener->onMouseScroll = [](D3DMouseEvent* event)
+	{
+		if (event->GelScrollDeltaValue() > 0)
+			cout << "휠을 올림" << endl;
+		if (event->GelScrollDeltaValue() < 0)
+			cout << "휠을 내림" << endl;
+	};
+
+	D3DKeyboardEventListener* keyboardEventListener = new D3DKeyboardEventListener();
+	keyboardEventListener->onKeyPressed = [](D3DKeyboardEvent* event) {
+		cout <<  static_cast<unsigned>(event->GetKeyCode()) << "키가 눌림" << endl;
+	};
+	keyboardEventListener->onKeyReleased = [](D3DKeyboardEvent* event) {
+		cout << static_cast<unsigned>(event->GetKeyCode()) << "키가 때짐" << endl;
+	};
+
+	D3DWindowEventListener* windowEventListener = new D3DWindowEventListener();
+	windowEventListener->onWindowExit = [](D3DWindowEvent* event) {
+		cout << "윈도우 끌려고?" << endl;
+	};
+	windowEventListener->onWindowMaxiMize = [](D3DWindowEvent* event) {
+		cout << "최대화 이벤트 감지" << endl;
+		cout << event->GetSize().width << endl;
+		cout << event->GetSize().height << endl;
+	};
+	windowEventListener->onWindowMiniMize = [](D3DWindowEvent* event) {
+		cout << "최소화 이벤트 감지" << endl;
+		cout << event->GetSize().width << endl;
+		cout << event->GetSize().height << endl;
+	};
+	windowEventListener->onWindowMove = [](D3DWindowEvent* event) {
+		cout << "무브" << endl;
+		cout << event->GetPosition().x << " / " << event->GetPosition().y << endl;
+	};
+	windowEventListener->onWindowResize = [](D3DWindowEvent* event) {
+		cout << "리사이즈" << endl;
+		cout << event->GetSize().width << endl;
+		cout << event->GetSize().height << endl;
+	};
+
+
+	m_eventDispatcher->AddEventListener(windowEventListener);
+	//m_eventDispatcher->AddEventListener(listener);
+	//m_eventDispatcher->AddEventListener(keyboardEventListener);
 }
 
 void _3D어플리케이션::OnUpdate()

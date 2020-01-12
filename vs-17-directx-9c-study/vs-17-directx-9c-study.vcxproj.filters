@@ -82,9 +82,6 @@
     <ClInclude Include="D3DManager.h">
       <Filter>D3DFramework</Filter>
     </ClInclude>
-    <ClInclude Include="D3DProperties.h">
-      <Filter>D3DFramework</Filter>
-    </ClInclude>
     <ClInclude Include="Singleton.h">
       <Filter>D3DFramework</Filter>
     </ClInclude>

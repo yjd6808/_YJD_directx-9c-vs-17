@@ -3,6 +3,7 @@
 #include "D3DMouseEvent.h"
 #include "D3DKeyboardEventListener.h"
 #include "D3DMouseEventListener.h"
+#include "D3DWindowEventListener.h"
 #include "D3DEvent.h"
 
 #include <iostream>
@@ -20,7 +21,7 @@ std::string D3DEventDispatcher::_getListenerID(D3DEvent::Type eventType)
 	switch (eventType) {
 	case D3DEvent::Type::KEYBOARD: return D3DKeyboardEventListener::LISTENER_ID;
 	case D3DEvent::Type::MOUSE: return D3DMouseEventListener::LISTENER_ID;
-	case D3DEvent::Type::WINDOW: return D3DMouseEventListener::LISTENER_ID;
+	case D3DEvent::Type::WINDOW: return D3DWindowEventListener::LISTENER_ID;
 	default:
 		//잘못된 이벤트 예외처리
 		//솔직히 들어올일 없다..

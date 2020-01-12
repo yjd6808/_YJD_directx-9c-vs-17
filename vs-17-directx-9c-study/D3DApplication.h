@@ -1,13 +1,13 @@
 #pragma once
 
-#include <Windows.h>
-#include <unordered_map>
 #include "D3DObject.h"
 #include "D3DEventDispatcher.h"
 #include "D3DMouseEventListener.h"
 #include "D3DWindowEventListener.h"
 #include "D3DKeyboardEventListener.h"
 
+#include <Windows.h>
+#include <unordered_map>
 
 #define D3DAPPLICATION_ALREADY_RUNNING		-1
 #define D3DAPPLICATION_INITIALIZE_FAILED	-2
@@ -17,9 +17,9 @@ class D3DApplication
 {
 	static LRESULT CALLBACK WindowProc(HWND hWnd, UINT ¸Þ½ÃÁö, WPARAM wParam, LPARAM lParam);
 
-	static void UpdateMouseEvent(UINT mouseMessage, D3DMouseEvent* mouseEvent);
+	static void UpdateMouseEvent(UINT mouseMessage, WPARAM deltaValue, D3DMouseEvent* mouseEvent);
 	static void UpdateKeyboardEvent(UINT keyboardMessage, WPARAM keyValue, D3DKeyboardEvent* keyboardEvent);
-	static void UpdateWindowEvent(UINT windowMessage, D3DWindowEvent* windowEvent);
+	static void UpdateWindowEvent(UINT windowMessage, WPARAM windowValue, D3DWindowEvent* windowEvent);
 public:
 	D3DApplication(HINSTANCE hInstance,
 		HINSTANCE hPrevInstance,

@@ -75,7 +75,6 @@
     <ClInclude Include="D3DObject.h" />
     <ClInclude Include="D3DObjectFactory.h" />
     <ClInclude Include="D3DPoint.h" />
-    <ClInclude Include="D3DProperties.h" />
     <ClInclude Include="D3DSize.h" />
     <ClInclude Include="D3DVertex.h" />
     <ClInclude Include="D3DVertexBuffer.h" />

@@ -1,6 +1,5 @@
 #include "common.h"
 #include "D3DCamera.h"
-#include "D3DProperties.h"
 
 
 void D3DCamera::OnInit()

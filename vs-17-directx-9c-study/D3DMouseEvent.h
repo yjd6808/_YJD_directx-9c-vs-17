@@ -31,14 +31,15 @@ public:
 	{
 	}
 public:
-	MouseEventType getMouseEventType() { return m_mouseEventType;}
-	MouseButton getMouseButton() { return m_mouseButton; }
-
+	MouseEventType GetMouseEventType() { return m_mouseEventType;}
+	MouseButton GetMouseButton() { return m_mouseButton; }
+	int GelScrollDeltaValue() { return m_scrollDeltaValue;  }
 private:
 	MouseEventType m_mouseEventType;
 	MouseButton m_mouseButton;
 	float m_cursorPositionX;
 	float m_cursorPositionY;
+	int m_scrollDeltaValue;
 
 	friend class D3DApplication;
 };

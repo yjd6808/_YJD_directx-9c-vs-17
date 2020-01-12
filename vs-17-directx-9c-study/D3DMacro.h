@@ -1,5 +1,28 @@
 #pragma once
 
+
+/********************************************************************************
+ *                                                                              *
+ *                                                                              *
+ *                                윈도우 매크로                                 *
+ *                                                                              *
+ *                                                                              *
+ ********************************************************************************/
+
+#define WINDOW_X		300
+#define WINDOW_Y		300
+#define WINDOW_WIDTH	1280
+#define WINDOW_HEIGHT	720
+
+
+/********************************************************************************
+ *                                                                              *
+ *                                                                              *
+ *                                함수 매크로                                   *
+ *                                                                              *
+ *                                                                              *
+ ********************************************************************************/
+
 #define CREATE_D3DAPPLICATION_CONSTRUCTOR(className) public: \
 className(HINSTANCE hInstance, \
 HINSTANCE hPrevInstance, \
@@ -54,22 +77,6 @@ vname_3(pname_3) {}
 #define CREATE_D3DOBJECT_DESTRUCTOR(className) public: \
 ~className() {} 
 
-//이런 함수 있을거같은데 걍 찾아보기 귀찮아서 만듬
-#define D3DCOLOR_GETA(color) color >> 24
-#define D3DCOLOR_GETR(color) color << 8 >> 24
-#define D3DCOLOR_GETG(color) color << 16 >> 24
-#define D3DCOLOR_GETB(color) color << 24 >> 24
-
-#define D3DCOLOR_WHITE	0xffffffff
-#define D3DCOLOR_BLACK	0xff000000
-#define D3DCOLOR_RED	0xffff0000
-#define D3DCOLOR_GREEN	0xff00ff00
-#define D3DCOLOR_YELLOW 0xffffff00
-#define D3DCOLOR_VIOLET 0xffff00ff
-#define D3DCOLOR_BLUE	0xff0000ff
-#define D3DCOLOR_CYAN	0xff00ffff
-
-
 //dstD3DBuffer : 인덱스버퍼나 정점버퍼
 //srcArray : 복사할 데이터
 //일부러 중괄호를 줘서 내부에 지역변수를 만들어 중복된 이름을 방지함
@@ -120,5 +127,49 @@ d3dDevice->CreateIndexBuffer( \
 	nullptr);
 
 
+/********************************************************************************
+ *                                                                              *
+ *                                                                              *
+ *                                컬러 매크로                                   *
+ *                                                                              *
+ *                                                                              *
+ ********************************************************************************/
+
+ //이런 함수 있을거같은데 걍 찾아보기 귀찮아서 만듬
+#define D3DCOLOR_GETA(color) color >> 24
+#define D3DCOLOR_GETR(color) color << 8 >> 24
+#define D3DCOLOR_GETG(color) color << 16 >> 24
+#define D3DCOLOR_GETB(color) color << 24 >> 24
+
+#define D3DCOLOR_WHITE	0xffffffff
+#define D3DCOLOR_BLACK	0xff000000
+#define D3DCOLOR_RED	0xffff0000
+#define D3DCOLOR_GREEN	0xff00ff00
+#define D3DCOLOR_YELLOW 0xffffff00
+#define D3DCOLOR_VIOLET 0xffff00ff
+#define D3DCOLOR_BLUE	0xff0000ff
+#define D3DCOLOR_CYAN	0xff00ffff
+
+/********************************************************************************
+ *                                                                              *
+ *                                                                              *
+ *                                삭제 매크로                                   *
+ *                                                                              *
+ *                                                                              *
+ ********************************************************************************/
+
 #define D3DSAFE_DELETE(data) do { delete data; data = nullptr; } while(0)
 #define D3DSAFE_DELETE_ARRAY(arr) do { delete[] arr; arr = nullptr; } while(0)
+
+ /********************************************************************************
+  *                                                                              *
+  *                                                                              *
+  *                               콜백 매크로                                    *
+  *                                                                              *
+  *                                                                              *
+  ********************************************************************************/
+
+#define D3DCALLBACK_0(__selector__, __target__) std::bind(&__selector__, __target__)
+#define D3DCALLBACK_1(__selector__, __target__) std::bind(&__selector__, __target__, std::placeholders::_1)
+#define D3DCALLBACK_2(__selector__, __target__) std::bind(&__selector__, __target__, std::placeholders::_1, std::placeholders::_2)
+#define D3DCALLBACK_3(__selector__, __target__) std::bind(&__selector__, __target__, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3)

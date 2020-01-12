@@ -1,10 +1,10 @@
 #include "D3DApplication.h"
-#include "D3DProperties.h"
 #include "D3DEventDispatcher.h"
 #include "Timer.h"
 #include "D3DManager.h"
 #include "D3DMouseEvent.h"
 #include "D3DKeyboardEvent.h"
+#include "D3DMacro.h"
 
 #include <iostream>
 
@@ -19,9 +19,12 @@ LRESULT CALLBACK D3DApplication::WindowProc(HWND hWnd, UINT message, WPARAM wPar
 	
 	switch (message)
 	{
+	case WM_MOVE:
+	case WM_SIZE:
 	case WM_DESTROY:
 	{
-		PostQuitMessage(0);
+		D3DWindowEvent windowEvent;
+		UpdateWindowEvent(message, wParam, &windowEvent);
 		return 0;
 	}
 	break;
@@ -35,7 +38,7 @@ LRESULT CALLBACK D3DApplication::WindowProc(HWND hWnd, UINT message, WPARAM wPar
 	case WM_MOUSEWHEEL:
 	{
 		D3DMouseEvent mouseEvent;
-		UpdateMouseEvent(message, &mouseEvent);
+		UpdateMouseEvent(message, wParam, &mouseEvent);
 	}
 	break;
 	case WM_KEYDOWN:
@@ -52,7 +55,7 @@ LRESULT CALLBACK D3DApplication::WindowProc(HWND hWnd, UINT message, WPARAM wPar
 	return DefWindowProc(hWnd, message, wParam, lParam);
 }
 
-void D3DApplication::UpdateMouseEvent(UINT mouseMessage, D3DMouseEvent * mouseEvent)
+void D3DApplication::UpdateMouseEvent(UINT mouseMessage, WPARAM deltaValue, D3DMouseEvent * mouseEvent)
 {
 	static D3DApplication* currentApplication = D3DManager::GetApplication();
 	static D3DEventDispatcher* eventDispatcher = currentApplication->m_eventDispatcher;
@@ -103,19 +106,72 @@ void D3DApplication::UpdateMouseEvent(UINT mouseMessage, D3DMouseEvent * mouseEv
 		mouseEvent->m_mouseButton = D3DMouseEvent::MouseButton::BUTTON_MIDDLE;
 	}
 	break;
+	case WM_MOUSEWHEEL:
+	{
+		mouseEvent->m_mouseEventType = D3DMouseEvent::MouseEventType::MOUSE_SCROLL;
+		mouseEvent->m_mouseButton = D3DMouseEvent::MouseButton::BUTTON_MIDDLE;
+		mouseEvent->m_scrollDeltaValue = GET_WHEEL_DELTA_WPARAM(deltaValue);
+	}
+	break;
 	}
 	eventDispatcher->DispatchEvent(mouseEvent);
+	
 }
 
-void D3DApplication::UpdateKeyboardEvent(UINT keyboardMessage, WPARAM keyValue, D3DKeyboardEvent * keyboardEvent)
+void D3DApplication::UpdateKeyboardEvent(UINT keyboardMessage, WPARAM keyValue, D3DKeyboardEvent* keyboardEvent)
 {
 	static D3DApplication* currentApplication = D3DManager::GetApplication();
 	static D3DEventDispatcher* eventDispatcher = currentApplication->m_eventDispatcher;
 
+	switch (keyboardMessage)
+	{
+	case WM_KEYDOWN:
+	case WM_SYSKEYDOWN:
+	keyboardEvent->m_isPressed = true;
+	break;
+	case WM_KEYUP:
+	case WM_SYSKEYUP:
+	keyboardEvent->m_isPressed = false;
+	break;
+	}
+	
+	auto iter = D3DKeyboardEventListener::KEY_MAP.find(keyValue);
+	if (iter != D3DKeyboardEventListener::KEY_MAP.end())
+		keyboardEvent->m_keyCode = iter->second;
+	else
+		keyboardEvent->m_keyCode = D3DKeyboardEvent::KeyCode::KEY_NONE;
+	eventDispatcher->DispatchEvent(keyboardEvent);
 }
 
-void D3DApplication::UpdateWindowEvent(UINT message, D3DWindowEvent * windowEvent)
+void D3DApplication::UpdateWindowEvent(UINT windowMessage, WPARAM windowValue, D3DWindowEvent * windowEvent)
 {
+	static D3DApplication* currentApplication = D3DManager::GetApplication();
+	static D3DEventDispatcher* eventDispatcher = currentApplication->m_eventDispatcher;
+
+
+	RECT rect;
+	GetWindowRect(currentApplication->m_hWnd, &rect);
+	windowEvent->m_point.x = rect.left;
+	windowEvent->m_point.y = rect.top;
+	windowEvent->m_size.width = rect.right - rect.left;
+	windowEvent->m_size.height = rect.bottom - rect.top;
+	switch (windowMessage)
+	{
+	case WM_SIZE:
+	{
+		if (windowValue == SIZE_MINIMIZED)		windowEvent->m_windowEventType = D3DWindowEvent::WindowEventType::MINIMIZE;
+		else if (windowValue == SIZE_MAXIMIZED) windowEvent->m_windowEventType = D3DWindowEvent::WindowEventType::MAXIMIZE;
+		else 									windowEvent->m_windowEventType = D3DWindowEvent::WindowEventType::RESIZE;
+	}
+	break;
+	case WM_MOVE:
+	windowEvent->m_windowEventType = D3DWindowEvent::WindowEventType::MOVE;
+	break;
+	case WM_DESTROY:
+	windowEvent->m_windowEventType = D3DWindowEvent::WindowEventType::EXIT;
+	break;
+	}
+	eventDispatcher->DispatchEvent(windowEvent);
 }
 
 D3DApplication::D3DApplication(HINSTANCE hInstance,
