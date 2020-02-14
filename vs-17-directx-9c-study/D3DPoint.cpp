@@ -1,5 +1,7 @@
 #include "D3DPoint.h"
 
+#include <math.h>
+
 D3DPoint2D::D3DPoint2D() :
 	x(0.0f),
 	y(0.0f)
@@ -167,4 +169,9 @@ D3DPoint3D & D3DPoint3D::operator=(const D3DPoint3D & point)
 	this->y = point.y;
 	this->z = point.z;
 	return *this;
+}
+
+float D3DPoint3D::DistanceTo(const D3DPoint3D & point)
+{
+	return sqrtf(powf(this->x, 2.0f) + powf(this->x, 2.0f) + powf(this->x, 2.0f));
 }

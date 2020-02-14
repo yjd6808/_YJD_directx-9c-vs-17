@@ -25,6 +25,7 @@ LRESULT CALLBACK D3DApplication::WindowProc(HWND hWnd, UINT message, WPARAM wPar
 	{
 		D3DWindowEvent windowEvent;
 		UpdateWindowEvent(message, wParam, &windowEvent);
+		
 		return 0;
 	}
 	break;
@@ -169,6 +170,7 @@ void D3DApplication::UpdateWindowEvent(UINT windowMessage, WPARAM windowValue, D
 	break;
 	case WM_DESTROY:
 	windowEvent->m_windowEventType = D3DWindowEvent::WindowEventType::EXIT;
+	PostQuitMessage(0);
 	break;
 	}
 	eventDispatcher->DispatchEvent(windowEvent);

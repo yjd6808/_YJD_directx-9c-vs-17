@@ -43,4 +43,6 @@ public:
 	D3DPoint3D& operator+=(const D3DPoint3D& point);
 	D3DPoint3D& operator-=(const D3DPoint3D& point);
 	D3DPoint3D& operator=(const D3DPoint3D& point);
+	
+	float DistanceTo(const D3DPoint3D& point);
 };

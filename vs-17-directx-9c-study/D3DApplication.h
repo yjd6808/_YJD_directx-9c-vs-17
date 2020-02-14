@@ -25,7 +25,7 @@ public:
 		HINSTANCE hPrevInstance,
 		LPWSTR    lpCmdLine,
 		int       nCmdShow);
-	~D3DApplication();
+	virtual ~D3DApplication();
 
 
 	void Add(D3DObject* obj);

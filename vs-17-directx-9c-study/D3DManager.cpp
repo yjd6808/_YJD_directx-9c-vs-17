@@ -47,3 +47,8 @@ D3DApplication * D3DManager::GetApplication()
 	return s_applicationInstance->m_application;
 }
 
+void D3DManager::ReleaseMemory()
+{
+	delete s_applicationInstance;
+}
+

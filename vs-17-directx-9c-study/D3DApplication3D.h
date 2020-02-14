@@ -13,7 +13,7 @@ class D3DApplication3D : public D3DApplication
 public:
 	LPDIRECT3DDEVICE9 GetDevice();
 
-	~D3DApplication3D();
+	virtual ~D3DApplication3D();
 protected:
 	bool Init() override;
 	void Update() override;
@@ -22,8 +22,6 @@ protected:
 protected:
 	virtual void OnInit() = 0;
 	virtual void OnUpdate() = 0;
-	virtual void OnRender() = 0;
-	virtual void OnRelease() = 0;
 protected:
 	LPDIRECT3D9 m_pD3D;
 	LPDIRECT3DDEVICE9 m_pD3DDevice;

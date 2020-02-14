@@ -12,5 +12,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	D3DConsole::SetWidth(300);
 	D3DConsole::SetHeight(200);
 
-	return D3DManager::StartApplication(new _3D어플리케이션(hInstance, hPrevInstance, lpCmdLine, nCmdShow));
+	int _exitCode = D3DManager::StartApplication(new _3D어플리케이션(hInstance, hPrevInstance, lpCmdLine, nCmdShow));
+	D3DManager::ReleaseMemory();
+	return _exitCode;
 }

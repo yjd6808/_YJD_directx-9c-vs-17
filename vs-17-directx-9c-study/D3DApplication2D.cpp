@@ -39,7 +39,6 @@ void D3DApplication2D::Render()
 
 	m_pD3DDevice->Clear(0, nullptr, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 255, 0), 1.0f, 0);
 	m_pD3DDevice->BeginScene();
-	OnRender();
 	for (auto iter = m_objects.begin(); iter != m_objects.end(); iter++)
 		iter->second->OnRender();
 	m_pD3DDevice->EndScene();
@@ -48,8 +47,6 @@ void D3DApplication2D::Render()
 
 void D3DApplication2D::Release()
 {
-	OnRelease();
-
 	for (auto iter = m_objects.begin(); iter != m_objects.end(); iter++)
 		iter->second->OnRelease();
 

@@ -5,14 +5,35 @@
 
 using namespace std;
 
+float getInternal(D3DXVECTOR2& a, D3DXVECTOR2& b) {
+	return a.x * b.x + a.y + b.y;
+}
+
+float getAmount(D3DXVECTOR2 v) {
+	return  pow(v.x, 2.0) + (v.y, 2.0);
+}
+
+float getDegree(D3DXVECTOR2& a, D3DXVECTOR2& b)
+{
+	 float rad =  getInternal(a, b) / (getAmount(a) * getAmount(b));
+	 return  D3DXToDegree(acos(rad));
+}
+
 void _3D어플리케이션::OnInit()
 {
+	D3DXVECTOR2 a{ -1.0f,	10.0f };
+	D3DXVECTOR2 b{	3.0f,	 1.0f };
+
+	cout << getDegree(a, b) << endl;
+
+
+
 	D3DText* text = m_objectFactory->CreateText("안녕하세요");
-	text->SetPositionX(100.0f);
-	text->SetPositionY(100.0f);
+	text->SetPositionX(0.0f);
+	text->SetPositionY(0.0f);
 	text->SetColor(D3DColor::RED);
 	text->SetScaleX(2.0f);
-	text->SetFontSize(30);
+	text->SetFontSize(50);
 	this->Add(text);
 
 	D3DAxis* axis = m_objectFactory->CreateAxis(15.0f);
@@ -65,11 +86,21 @@ void _3D어플리케이션::OnInit()
 	};
 
 	D3DKeyboardEventListener* keyboardEventListener = new D3DKeyboardEventListener();
-	keyboardEventListener->onKeyPressed = [](D3DKeyboardEvent* event) {
-		cout <<  static_cast<unsigned>(event->GetKeyCode()) << "키가 눌림" << endl;
+	keyboardEventListener->onKeyPressed = [this](D3DKeyboardEvent* event) {
+		for (auto i = m_keyCodeVec.begin(); i != m_keyCodeVec.end(); i ++) {
+
+		}
+
+		m_keyCodeVec.push_back(event->GetKeyCode());
 	};
-	keyboardEventListener->onKeyReleased = [](D3DKeyboardEvent* event) {
-		cout << static_cast<unsigned>(event->GetKeyCode()) << "키가 때짐" << endl;
+	keyboardEventListener->onKeyReleased = [this](D3DKeyboardEvent* event) {
+		for (auto i = m_keyCodeVec.begin(); i != m_keyCodeVec.end();) {
+			if ((*i) == event->GetKeyCode()) 
+				i = m_keyCodeVec.erase(i);
+			else
+				i++;
+
+		}
 	};
 
 	D3DWindowEventListener* windowEventListener = new D3DWindowEventListener();
@@ -96,21 +127,30 @@ void _3D어플리케이션::OnInit()
 		cout << event->GetSize().height << endl;
 	};
 
-
-	m_eventDispatcher->AddEventListener(windowEventListener);
+	//m_eventDispatcher->AddEventListener(windowEventListener);
 	//m_eventDispatcher->AddEventListener(listener);
-	//m_eventDispatcher->AddEventListener(keyboardEventListener);
+	m_eventDispatcher->AddEventListener(keyboardEventListener);
 }
 
 void _3D어플리케이션::OnUpdate()
 {
-
+	for (int i = 0; i < m_keyCodeVec.size(); i++) {
+		if (m_keyCodeVec[i] == D3DKeyboardEvent::KeyCode::KEY_W) {
+			m_camera->SetPositionZ(m_camera->GetPositionZ() + 0.1f);
+			m_camera->SetLookAtZ(m_camera->GetLookAtZ() + 0.1f);
+		}
+		else if (m_keyCodeVec[i] == D3DKeyboardEvent::KeyCode::KEY_S) {
+			m_camera->SetPositionZ(m_camera->GetPositionZ() - 0.1f);
+			m_camera->SetLookAtZ(m_camera->GetLookAtZ() - 0.1f);
+		}
+		else if (m_keyCodeVec[i] == D3DKeyboardEvent::KeyCode::KEY_D) {
+			m_camera->SetPositionX(m_camera->GetPositionX() + 0.1f);
+			m_camera->SetLookAtX(m_camera->GetLookAtX() + 0.1f);
+		}
+		else if (m_keyCodeVec[i] == D3DKeyboardEvent::KeyCode::KEY_A) {
+			m_camera->SetPositionX(m_camera->GetPositionX() - 0.1f);
+			m_camera->SetLookAtX(m_camera->GetLookAtX() - 0.1f);
+		}
+	}
 }
 
-void _3D어플리케이션::OnRender()
-{
-}
-
-void _3D어플리케이션::OnRelease()
-{
-}

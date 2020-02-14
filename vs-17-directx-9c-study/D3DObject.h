@@ -17,8 +17,8 @@ protected:
 	virtual void OnRender() = 0;
 	virtual void OnRelease() = 0;
 public:
-	virtual void SetPosition(const D3DPoint3D& point);
-	virtual void SetPosition(const float x, const float y, const float z);
+	void SetPosition(const D3DPoint3D& point);
+	void SetPosition(const float x, const float y, const float z);
 	void SetPositionX(const float x);
 	void SetPositionY(const float y);
 	void SetPositionZ(const float z);
