@@ -44,7 +44,6 @@ void D3DPlane::OnInit()
 		}
 		cout << "-----------" << endl;
 	}
-
 	D3DVertex3D* vertexArray = new D3DVertex3D[horizontalVertexCount * vertialVertexCount];
 	for (int i = 0; i < m_vertexes.size(); i++)
 		memcpy(&vertexArray[i], &m_vertexes[i], sizeof(D3DVertex3D));
@@ -75,6 +74,8 @@ void D3DPlane::OnInit()
 		}
 	}*/
 
+
+
 	ULONG vertexArraySize = sizeof(D3DVertex3D) * m_vertexes.size();
 	ULONG indexArraySize = sizeof(WORD) * m_width * m_height * 2 * 3;
 	//정점 버퍼 생성
@@ -98,6 +99,7 @@ void D3DPlane::OnUpdate()
 void D3DPlane::OnRender()
 {
 	m_pD3DDevice->SetRenderState(D3DRS_LIGHTING, false);
+	m_pD3DDevice->SetFVF(D3DFVF3D);
 	m_pD3DDevice->SetStreamSource(0, m_pVertextBuffer, 0, sizeof(D3DVertex3D));
 	m_pD3DDevice->SetIndices(m_pIndexBuffer);
 
@@ -105,7 +107,7 @@ void D3DPlane::OnRender()
 	D3DXMatrixScaling(&scaleMat, m_scale.x, m_scale.y, m_scale.z);
 
 	D3DXMATRIX rotMat;
-	D3DXMatrixRotationYawPitchRoll(&rotMat, m_rotation.y, m_rotation.x, m_rotation.z);
+	D3DXMatrixRotationYawPitchRoll(&rotMat, m_rotation.y * 3.141592 / 180.0f, m_rotation.x * 3.141592 / 180.0f, m_rotation.z * 3.141592 / 180.0f);
 
 	D3DXMATRIX translationMat;
 	D3DXMatrixTranslation(&translationMat, m_position.x, m_position.y, m_position.z);

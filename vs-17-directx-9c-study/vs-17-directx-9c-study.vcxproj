@@ -30,14 +30,26 @@
     <ClCompile Include="D3DEventDispatcher.cpp" />
     <ClCompile Include="D3DKeyboardEventListener.cpp" />
     <ClCompile Include="D3DManager.cpp" />
+    <ClCompile Include="D3DMeshCube.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="D3DMouseEventListener.cpp" />
     <ClCompile Include="D3DObject.cpp" />
     <ClCompile Include="D3DObjectFactory.cpp" />
     <ClCompile Include="D3DPlane.cpp" />
+    <ClCompile Include="D3DPlaneWithTexture.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="D3DPoint.cpp" />
     <ClCompile Include="D3DRotation.cpp" />
     <ClCompile Include="D3DScale.cpp" />
     <ClCompile Include="D3DSize.cpp" />
+    <ClCompile Include="D3DSphere.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="D3DText.cpp" />
     <ClCompile Include="D3DWindowEventListener.cpp" />
     <ClCompile Include="main.cpp" />
@@ -52,11 +64,23 @@
     <ClInclude Include="D3DEventListener.h" />
     <ClInclude Include="D3DKeyboardEvent.h" />
     <ClInclude Include="D3DKeyboardEventListener.h" />
+    <ClInclude Include="D3DMeshCube.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="D3DMouseEvent.h" />
     <ClInclude Include="D3DMouseEventListener.h" />
     <ClInclude Include="D3DPlane.h" />
+    <ClInclude Include="D3DPlaneWithTexture.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="D3DRotation.h" />
     <ClInclude Include="D3DScale.h" />
+    <ClInclude Include="D3DSphere.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="D3DText.h" />
     <ClInclude Include="D3DEventDispatcher.h" />
     <ClInclude Include="D3DWindowEvent.h" />

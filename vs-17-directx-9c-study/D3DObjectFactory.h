@@ -5,6 +5,9 @@
 #include "D3DAxis.h"
 #include "D3DPlane.h"
 #include "D3DText.h"
+#include "D3DPlaneWithTexture.h"
+#include "D3DMeshCube.h"
+#include "D3DSphere.h"
 
 #include <d3d9.h>
 
@@ -16,11 +19,12 @@ public:
 	
 	D3DCamera* CreateCamera(HWND hwnd);
 	D3DCube* CreateCube(float length);
+	D3DMeshCube* CreateMeshCube(float length);
 	D3DAxis* CreateAxis(float length);
 	D3DPlane* CreatePlane(int width, int height, float squreSideLength);
 	D3DText* CreateText(std::string text);
-	/*T CreateRectangleBox(float x_length, float y_length, float z_length);
-	T CreateSphere(float radious);*/
+	D3DSphere* CreateSphere(float radious);
+	D3DPlaneWithTexture* CreatePlaneWithTexture(int length, std::string TextureFileName);
 
 private:
 	LPDIRECT3DDEVICE9 m_pD3DDevice;

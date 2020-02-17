@@ -52,15 +52,20 @@ void D3DCube::OnInit()
 	//인덱스 버퍼 생성
 	D3DCREATE_INDEXBUFFER(m_pD3DDevice, m_pIndexBuffer, indexArray);
 	D3DLOCKCOPY(m_pIndexBuffer, indexArray);
+
+
 }
 
 void D3DCube::OnUpdate()
 {
 }
 
+
+
 void D3DCube::OnRender()
 {
 	m_pD3DDevice->SetRenderState(D3DRS_LIGHTING, false);
+	m_pD3DDevice->SetFVF(D3DFVF3D);
 	m_pD3DDevice->SetStreamSource(0, m_pVertextBuffer, 0, sizeof(D3DVertex3D));
 	m_pD3DDevice->SetIndices(m_pIndexBuffer);
 
@@ -73,11 +78,18 @@ void D3DCube::OnRender()
 	D3DXMATRIX translationMat;
 	D3DXMatrixTranslation(&translationMat, m_position.x, m_position.y, m_position.z);
 
+	m_min.x = m_position.x - m_length / 2.0f;
+	m_min.y = m_position.y - m_length / 2.0f;
+	m_min.z = m_position.z - m_length / 2.0f;
+
+	m_max.x = m_position.x + m_length / 2.0f;
+	m_max.y = m_position.y + m_length / 2.0f;
+	m_max.z = m_position.z + m_length / 2.0f;
+
 	D3DXMATRIX transformResult = scaleMat * rotMat* translationMat;
 	m_pD3DDevice->SetTransform(D3DTS_WORLD, &transformResult);
 	m_pD3DDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_vertexes.size(), 0, 6 * 2);
 	m_pD3DDevice->SetRenderState(D3DRS_LIGHTING, true);
-	
 }
 
 void D3DCube::OnRelease()
@@ -87,4 +99,13 @@ void D3DCube::OnRelease()
 
 	if (m_pVertextBuffer != nullptr)
 		m_pVertextBuffer->Release();
+}
+
+bool D3DCube::isCollided(D3DCube * otherCube)
+{
+	if (this->m_min.x <= otherCube->m_max.x && this->m_max.x >= otherCube->m_min.x &&
+		this->m_min.y <= otherCube->m_max.y && this->m_max.y >= otherCube->m_min.y &&
+		this->m_min.z <= otherCube->m_max.z && this->m_max.z >= otherCube->m_min.z)
+		return true;
+	return false;
 }

@@ -50,6 +50,8 @@ public:
 	float GetScaleX() const;
 	float GetScaleY() const;
 	float GetScaleZ() const;
+
+	float DistanceFrom(D3DObject* obj) const;
 protected:
 	D3DPoint3D m_position;
 	D3DRotation m_rotation;

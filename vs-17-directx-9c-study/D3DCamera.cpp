@@ -45,7 +45,6 @@ void D3DCamera::SetView()
 	up.y = m_lookUp.y;
 	up.z = m_lookUp.z;
 	D3DXMatrixLookAtLH(&m_viewMat, &pos, &at, &up);		//뷰스페이스 변환행렬을 얻을 수 있다.
-
 	m_pD3DDevice->SetTransform(D3DTS_VIEW, &m_viewMat);		
 }
 
@@ -55,7 +54,7 @@ void D3DCamera::SetViewport()
 	D3DVIEWPORT9 viewPort;
 
 	GetClientRect(m_hWnd, &windowRect);
-
+	
 	viewPort.X = 0;
 	viewPort.Y = 0;
 	viewPort.Width = windowRect.right - windowRect.left;

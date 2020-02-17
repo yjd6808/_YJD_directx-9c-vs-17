@@ -20,14 +20,14 @@ bool D3DApplication2D::Init()
 		return false;
 
 	OnInit();
-	for (auto iter = m_objects.begin(); iter != m_objects.end(); iter++)
+	for (auto iter = m_children.begin(); iter != m_children.end(); iter++)
 		iter->second->OnInit();
 	return true;
 }
 
 void D3DApplication2D::Update()
 {
-	for (auto iter = m_objects.begin(); iter != m_objects.end(); iter++)
+	for (auto iter = m_children.begin(); iter != m_children.end(); iter++)
 		iter->second->OnUpdate();
 	OnUpdate();
 }
@@ -39,7 +39,7 @@ void D3DApplication2D::Render()
 
 	m_pD3DDevice->Clear(0, nullptr, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 255, 0), 1.0f, 0);
 	m_pD3DDevice->BeginScene();
-	for (auto iter = m_objects.begin(); iter != m_objects.end(); iter++)
+	for (auto iter = m_children.begin(); iter != m_children.end(); iter++)
 		iter->second->OnRender();
 	m_pD3DDevice->EndScene();
 	m_pD3DDevice->Present(nullptr, nullptr, nullptr, nullptr);
@@ -47,7 +47,7 @@ void D3DApplication2D::Render()
 
 void D3DApplication2D::Release()
 {
-	for (auto iter = m_objects.begin(); iter != m_objects.end(); iter++)
+	for (auto iter = m_children.begin(); iter != m_children.end(); iter++)
 		iter->second->OnRelease();
 
 	if (m_pD3DDevice != nullptr)

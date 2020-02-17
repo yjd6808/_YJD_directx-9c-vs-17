@@ -1,6 +1,8 @@
 #include "D3DObject.h"
 
+#include <iostream>
 
+using namespace std;
 D3DObject::D3DObject(LPDIRECT3DDEVICE9 d3dDev) :
 	m_pD3DDevice(d3dDev),
 	m_scale(D3DScale()),
@@ -98,6 +100,15 @@ float D3DObject::GetScaleY() const
 float D3DObject::GetScaleZ() const
 {
 	return m_scale.z;
+}
+
+float D3DObject::DistanceFrom(D3DObject * obj) const
+{
+	return sqrt(
+				pow(obj->m_position.x - m_position.x, 2.0) +
+				pow(obj->m_position.y - m_position.y, 2.0) +
+				pow(obj->m_position.z - m_position.z, 2.0)
+		   );
 }
 
 void D3DObject::SetRotation(const D3DRotation & rotation)

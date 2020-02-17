@@ -51,7 +51,7 @@ bool D3DApplication3D::Init()
 	Add(m_camera);
 
 	OnInit();
-	for (auto iter = m_objects.begin(); iter != m_objects.end(); iter++)
+	for (auto iter = m_children.begin(); iter != m_children.end(); iter++)
 		iter->second->OnInit();
 
 	return true;
@@ -59,7 +59,7 @@ bool D3DApplication3D::Init()
 
 void D3DApplication3D::Update()
 {
-	for (auto iter = m_objects.begin(); iter != m_objects.end(); iter++)
+	for (auto iter = m_children.begin(); iter != m_children.end(); iter++)
 		iter->second->OnUpdate();
 
 
@@ -76,7 +76,7 @@ void D3DApplication3D::Render()
 	m_pD3DDevice->Clear(0, nullptr, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
 
 	m_pD3DDevice->BeginScene();
-	for (auto iter = m_objects.begin(); iter != m_objects.end(); iter++)
+	for (auto iter = m_children.begin(); iter != m_children.end(); iter++)
 		iter->second->OnRender();
 	m_pD3DDevice->EndScene();
 	m_pD3DDevice->Present(nullptr, nullptr, nullptr, nullptr);
@@ -84,7 +84,7 @@ void D3DApplication3D::Render()
 
 void D3DApplication3D::Release()
 {
-	for (auto iter = m_objects.begin(); iter != m_objects.end(); iter++)
+	for (auto iter = m_children.begin(); iter != m_children.end(); iter++)
 		iter->second->OnRelease();
 
 	if (m_pD3DDevice != nullptr)

@@ -42,11 +42,9 @@ void D3DAxis::OnRender()
 
 	m_pD3DDevice->SetRenderState(D3DRS_LIGHTING, false);
 	m_pD3DDevice->SetTransform(D3DTS_WORLD, &matWorld);
+	m_pD3DDevice->SetFVF(D3DFVF3D);
 	m_pD3DDevice->SetStreamSource(0, m_pVertextBuffer, 0, sizeof(D3DVertex3D));
 	m_pD3DDevice->DrawPrimitive(D3DPT_LINELIST, 0, 3);
-
-
-
 
 	m_pD3DDevice->SetRenderState(D3DRS_LIGHTING, true);
 }

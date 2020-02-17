@@ -2,8 +2,11 @@
 #include "D3DText.h"
 
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
+
+
 
 float getInternal(D3DXVECTOR2& a, D3DXVECTOR2& b) {
 	return a.x * b.x + a.y + b.y;
@@ -26,28 +29,38 @@ void _3D어플리케이션::OnInit()
 
 	cout << getDegree(a, b) << endl;
 
+	//D3DText* text = m_objectFactory->CreateText("안녕하세요");
+	//text->SetPositionX(0.0f);
+	//text->SetPositionY(0.0f);
+	//text->SetColor(D3DColor::RED);
+	//text->SetScaleX(2.0f);
+	//text->SetFontSize(50);
+	//this->Add(text);
 
-
-	D3DText* text = m_objectFactory->CreateText("안녕하세요");
-	text->SetPositionX(0.0f);
-	text->SetPositionY(0.0f);
-	text->SetColor(D3DColor::RED);
-	text->SetScaleX(2.0f);
-	text->SetFontSize(50);
-	this->Add(text);
 
 	D3DAxis* axis = m_objectFactory->CreateAxis(15.0f);
 	axis->SetRotationX(180.9f);
 	this->Add(axis);
-	//cube = m_objectFactory->CreateCube(5.0f);
-	//this->Add(cube);
-	this->Add(m_objectFactory->CreatePlane(3, 2, 1.0f));
-	D3DPlane* plane = m_objectFactory->CreatePlane(3, 2, 1.0f);
-	plane->SetScale(0.5f, 2.0f, 3.0f);
-	plane->SetRotationX(90.0f);
-	obj = plane;
-	this->Add(plane);
-	this->Add(m_objectFactory->CreatePlane(3, 2, 0.5f));
+
+	//plane = m_objectFactory->CreatePlane(3, 2, 1.0f);
+	//this->Add(plane);
+
+	cubeLeft = m_objectFactory->CreateMeshCube(3.0f);
+	cubeLeft->SetPositionX(-2.5f);
+	this->Add(cubeLeft);
+
+	cubeRight = m_objectFactory->CreateMeshCube(5.0f);
+	cubeRight->SetPositionX(3.5f);
+	this->Add(cubeRight);
+
+	sphereLeft = m_objectFactory->CreateSphere(1.5f);
+	sphereLeft->SetPositionX(-2.5f);
+	this->Add(sphereLeft);
+
+	sphereRight = m_objectFactory->CreateSphere(2.5f);
+	sphereRight->SetPositionX(3.5f);
+	this->Add(sphereRight);
+
 	
 
 	D3DMouseEventListener* listener = new D3DMouseEventListener();
@@ -87,11 +100,10 @@ void _3D어플리케이션::OnInit()
 
 	D3DKeyboardEventListener* keyboardEventListener = new D3DKeyboardEventListener();
 	keyboardEventListener->onKeyPressed = [this](D3DKeyboardEvent* event) {
-		for (auto i = m_keyCodeVec.begin(); i != m_keyCodeVec.end(); i ++) {
 
-		}
-
-		m_keyCodeVec.push_back(event->GetKeyCode());
+		auto iter = std::find(m_keyCodeVec.begin(), m_keyCodeVec.end(), event->GetKeyCode());
+		if (iter == m_keyCodeVec.end()) 
+			m_keyCodeVec.push_back(event->GetKeyCode());
 	};
 	keyboardEventListener->onKeyReleased = [this](D3DKeyboardEvent* event) {
 		for (auto i = m_keyCodeVec.begin(); i != m_keyCodeVec.end();) {
@@ -132,25 +144,65 @@ void _3D어플리케이션::OnInit()
 	m_eventDispatcher->AddEventListener(keyboardEventListener);
 }
 
+//ostream& operator<<(ostream& os, D3DPoint3D p)
+//{
+//	cout << p.x << " / " << p.y << " / " << p.z << endl;
+//	return os;
+//}
+
+ostream& operator<<(ostream& os, D3DRotation p)
+{
+	cout << p.x << " / " << p.y << " / " << p.z << endl;
+	return os;
+}
+
 void _3D어플리케이션::OnUpdate()
 {
 	for (int i = 0; i < m_keyCodeVec.size(); i++) {
 		if (m_keyCodeVec[i] == D3DKeyboardEvent::KeyCode::KEY_W) {
-			m_camera->SetPositionZ(m_camera->GetPositionZ() + 0.1f);
-			m_camera->SetLookAtZ(m_camera->GetLookAtZ() + 0.1f);
+			
 		}
 		else if (m_keyCodeVec[i] == D3DKeyboardEvent::KeyCode::KEY_S) {
 			m_camera->SetPositionZ(m_camera->GetPositionZ() - 0.1f);
 			m_camera->SetLookAtZ(m_camera->GetLookAtZ() - 0.1f);
 		}
 		else if (m_keyCodeVec[i] == D3DKeyboardEvent::KeyCode::KEY_D) {
-			m_camera->SetPositionX(m_camera->GetPositionX() + 0.1f);
-			m_camera->SetLookAtX(m_camera->GetLookAtX() + 0.1f);
+			cubeLeft->SetPositionX(cubeLeft->GetPositionX() + 0.01f);
+			sphereLeft->SetPositionX(sphereLeft->GetPositionX() + 0.01f);
+
+			/*m_camera->SetPositionX(m_camera->GetPositionX() + 0.1f);
+			m_camera->SetLookAtX(m_camera->GetLookAtX() + 0.1f);*/
 		}
 		else if (m_keyCodeVec[i] == D3DKeyboardEvent::KeyCode::KEY_A) {
-			m_camera->SetPositionX(m_camera->GetPositionX() - 0.1f);
-			m_camera->SetLookAtX(m_camera->GetLookAtX() - 0.1f);
+			cubeLeft->SetPositionX(cubeLeft->GetPositionX() - 0.01f);
+			sphereLeft->SetPositionX(sphereLeft->GetPositionX() - 0.01f);
+
+			//m_camera->SetPositionX(m_camera->GetPositionX() - 0.1f);
+			//m_camera->SetLookAtX(m_camera->GetLookAtX() - 0.1f);
+		}
+		else if (m_keyCodeVec[i] == D3DKeyboardEvent::KeyCode::KEY_L) {
+			cubeRight->SetPositionX(cubeRight->GetPositionX() + 0.01f);
+			sphereRight->SetPositionX(sphereRight->GetPositionX() + 0.01f);
+		}
+		else if (m_keyCodeVec[i] == D3DKeyboardEvent::KeyCode::KEY_J) {
+			cubeRight->SetPositionX(cubeRight->GetPositionX() - 0.01f);
+			sphereRight->SetPositionX(sphereRight->GetPositionX() - 0.01f);
+		}
+		else if (m_keyCodeVec[i] == D3DKeyboardEvent::KeyCode::KEY_LEFT_CTRL) {
+			m_camera->SetPositionY(m_camera->GetPositionX() - 0.1f);
+			m_camera->SetLookAtY(m_camera->GetLookAtX() - 0.1f);
+		}
+		else if (m_keyCodeVec[i] == D3DKeyboardEvent::KeyCode::KEY_SPACE) {
+			m_camera->SetPositionY(m_camera->GetPositionX() + 0.1f);
+			m_camera->SetLookAtY(m_camera->GetLookAtX() + 0.1f);
+		}
+
+		else if (m_keyCodeVec[i] == D3DKeyboardEvent::KeyCode::KEY_R) {
 		}
 	}
+
+
+	if (sphereLeft->isCollided(sphereRight))
+		cout << "충도루루" << endl;
 }
 

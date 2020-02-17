@@ -71,6 +71,15 @@
     <ClCompile Include="D3DKeyboardEventListener.cpp">
       <Filter>D3DFramework\D3DEvent</Filter>
     </ClCompile>
+    <ClCompile Include="D3DPlaneWithTexture.cpp">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DMeshCube.cpp">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DSphere.cpp">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_3D어플리케이션.h">
@@ -176,6 +185,15 @@
     </ClInclude>
     <ClInclude Include="D3DKeyboardEventListener.h">
       <Filter>D3DFramework\D3DEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DPlaneWithTexture.h">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DMeshCube.h">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DSphere.h">
+      <Filter>D3DFramework\D3DObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

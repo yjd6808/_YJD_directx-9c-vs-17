@@ -200,22 +200,22 @@ m_nCmdShow(nCmdShow)
 
 D3DApplication::~D3DApplication()
 {
-	for (auto iter = m_objects.begin(); iter != m_objects.end(); iter++)
+	for (auto iter = m_children.begin(); iter != m_children.end(); iter++)
 		delete iter->second;
 
-	m_objects.clear();
+	m_children.clear();
 	delete m_eventDispatcher;
 }
 
 void D3DApplication::Add(D3DObject * obj)
 {
-	m_objects.insert(std::make_pair(obj, obj));
+	m_children.insert(std::make_pair(obj, obj));
 }
 
 
 void D3DApplication::Remove(D3DObject * obj)
 {
-	m_objects.erase(obj);
+	m_children.erase(obj);
 }
 
 
