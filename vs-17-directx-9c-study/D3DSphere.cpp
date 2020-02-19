@@ -11,6 +11,8 @@
 
 void D3DSphere::OnInit()
 {
+	D3DObject::OnInit();
+
 	if (m_radious == 0.0f)
 		m_radious = 1.0f;
 
@@ -23,12 +25,9 @@ void D3DSphere::OnUpdate()
 {
 }
 
-
-
-
 void D3DSphere::OnRender()
 {
-	m_pD3DDevice->SetRenderState(D3DRS_LIGHTING, false);
+	D3DObject::OnRender();
 
 	D3DXMATRIX scaleMat;
 	D3DXMatrixScaling(&scaleMat, m_scale.x, m_scale.y, m_scale.z);
@@ -49,9 +48,3 @@ void D3DSphere::OnRelease()
 {
 }
 
-bool D3DSphere::isCollided(D3DSphere * otherSphere)
-{
-	if (this->DistanceFrom(otherSphere) <= m_radious + otherSphere->m_radious)
-		return true;
-	return false;
-}

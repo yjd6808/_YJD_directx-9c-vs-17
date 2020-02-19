@@ -28,7 +28,15 @@
     <ClCompile Include="D3DConsole.cpp" />
     <ClCompile Include="D3DCube.cpp" />
     <ClCompile Include="D3DEventDispatcher.cpp" />
+    <ClCompile Include="D3DHyperRectangle.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="D3DKeyboardEventListener.cpp" />
+    <ClCompile Include="D3DLine.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="D3DManager.cpp" />
     <ClCompile Include="D3DMeshCube.cpp">
       <SubType>
@@ -51,10 +59,19 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="D3DText.cpp" />
+    <ClCompile Include="D3DTriangleWithNormalVector.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="D3DWindowEventListener.cpp" />
+    <ClCompile Include="dx9_material.cpp" />
+    <ClCompile Include="dx9_texture.cpp" />
+    <ClCompile Include="dx9_texture2.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Sample\dx9_lighting.cpp" />
     <ClCompile Include="Timer.cpp" />
-    <ClCompile Include="_3D어플리케이션.cpp" />
+    <ClCompile Include="_3D_슈팅게임.cpp" />
+    <ClCompile Include="_공부용_3D어플리케이션.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="D3DAnimation.h" />
@@ -62,8 +79,16 @@
     <ClInclude Include="D3DConsole.h" />
     <ClInclude Include="D3DEvent.h" />
     <ClInclude Include="D3DEventListener.h" />
+    <ClInclude Include="D3DHyperRectangle.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="D3DKeyboardEvent.h" />
     <ClInclude Include="D3DKeyboardEventListener.h" />
+    <ClInclude Include="D3DLine.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="D3DMeshCube.h">
       <SubType>
       </SubType>
@@ -83,6 +108,10 @@
     </ClInclude>
     <ClInclude Include="D3DText.h" />
     <ClInclude Include="D3DEventDispatcher.h" />
+    <ClInclude Include="D3DTriangleWithNormalVector.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="D3DWindowEvent.h" />
     <ClInclude Include="D3DWindowEventListener.h" />
     <ClInclude Include="Timer.h" />
@@ -104,7 +133,11 @@
     <ClInclude Include="D3DVertexBuffer.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="StringFormatter.h" />
-    <ClInclude Include="_3D어플리케이션.h" />
+    <ClInclude Include="_3D_슈팅게임.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="_공부용_3D어플리케이션.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

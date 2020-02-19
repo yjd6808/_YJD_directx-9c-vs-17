@@ -45,7 +45,47 @@ bool D3DApplication3D::Init()
 
 	/* 컬링을 사용하겠다. */
 	m_pD3DDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
-	
+
+	m_pD3DDevice->SetRenderState(D3DRS_LIGHTING, TRUE);
+	m_pD3DDevice->SetRenderState(D3DRS_ZENABLE, TRUE);
+	m_pD3DDevice->SetRenderState(D3DRS_DITHERENABLE, TRUE);
+	m_pD3DDevice->SetRenderState(D3DRS_SPECULARENABLE, TRUE);
+
+
+
+	D3DMATERIAL9 mtrl;
+	ZeroMemory(&mtrl, sizeof(D3DMATERIAL9));
+	mtrl.Diffuse.r = 0.3f;
+	mtrl.Diffuse.g = 0.3f;
+	mtrl.Diffuse.b = 0.3f;
+	mtrl.Diffuse.a = 1.0f;
+	mtrl.Ambient.r = 1.0f;
+	mtrl.Ambient.g = 1.0f;
+	mtrl.Ambient.b = 1.0f;
+	mtrl.Ambient.a = 1.0f;
+	m_pD3DDevice->SetMaterial(&mtrl);
+
+	ZeroMemory(&m_light0, sizeof(D3DLIGHT9));
+	m_light0.Type = D3DLIGHT_DIRECTIONAL;
+	m_light0.Direction = D3DXVECTOR3(0.8f, -0.8f, 0.8f);
+	m_light0.Diffuse.r = 1.0f;
+	m_light0.Diffuse.g = 1.0f;
+	m_light0.Diffuse.b = 1.0f;
+
+	m_light0.Specular.a = 1.0;
+	m_light0.Specular.r = 1.0;
+	m_light0.Specular.g = 1.0;
+	m_light0.Specular.b = 1.0;
+
+	m_pD3DDevice->SetLight(0, &m_light0);
+
+	ZeroMemory(&m_light1, sizeof(D3DLIGHT9));
+	m_light1.Type = D3DLIGHT_DIRECTIONAL;
+	m_light1.Direction = D3DXVECTOR3(-0.8f, 0.8, -0.8f);
+	m_light1.Diffuse.r = 1.0f;
+	m_light1.Diffuse.g = 1.0f;
+	m_light1.Diffuse.b = 1.0f;
+	m_pD3DDevice->SetLight(1, &m_light1);
 
 	m_camera = m_objectFactory->CreateCamera(m_hWnd);
 	Add(m_camera);
@@ -53,7 +93,7 @@ bool D3DApplication3D::Init()
 	OnInit();
 	for (auto iter = m_children.begin(); iter != m_children.end(); iter++)
 		iter->second->OnInit();
-
+	OnInitEnd();
 	return true;
 }
 
@@ -72,10 +112,15 @@ void D3DApplication3D::Render()
 	if (m_pD3DDevice == nullptr)
 		return;
 
+
 	//z버퍼도 비워준다.
 	m_pD3DDevice->Clear(0, nullptr, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
 
 	m_pD3DDevice->BeginScene();
+
+	m_pD3DDevice->LightEnable(0, true);
+	m_pD3DDevice->LightEnable(1, true);
+
 	for (auto iter = m_children.begin(); iter != m_children.end(); iter++)
 		iter->second->OnRender();
 	m_pD3DDevice->EndScene();
@@ -93,4 +138,9 @@ void D3DApplication3D::Release()
 	if (m_pD3D != nullptr)
 		m_pD3D->Release();
 }
+
+void D3DApplication3D::OnInitEnd()
+{
+}
+
 

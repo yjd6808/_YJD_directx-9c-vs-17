@@ -17,6 +17,7 @@ public:
 
 	static int StartApplication(D3DApplication* application);
 	static D3DApplication* GetApplication();
+	static void SetApplication(D3DApplication* application);
 	static void ReleaseMemory();
 protected:
 	D3DApplication* m_application;

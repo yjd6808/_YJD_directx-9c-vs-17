@@ -171,7 +171,27 @@ D3DPoint3D & D3DPoint3D::operator=(const D3DPoint3D & point)
 	return *this;
 }
 
+D3DPoint3D D3DPoint3D::operator-(const D3DPoint3D & point)
+{
+	return D3DPoint3D(this->x - point.x, this->y - point.y, this->z - point.z);
+}
+
+D3DPoint3D D3DPoint3D::operator*(const D3DPoint3D & point)
+{
+	return D3DPoint3D(this->x * point.x, this->y * point.y, this->z * point.z);
+}
+
+D3DPoint3D D3DPoint3D::operator*(const float data)
+{
+	return D3DPoint3D(this->x * data, this->y * data, this->z * data);
+}
+
 float D3DPoint3D::DistanceTo(const D3DPoint3D & point)
 {
 	return sqrtf(powf(this->x, 2.0f) + powf(this->x, 2.0f) + powf(this->x, 2.0f));
+}
+
+D3DXVECTOR3 D3DPoint3D::ToD3DXVector3()
+{
+	return D3DXVECTOR3(this->x, this->y, this->z);
 }

@@ -8,21 +8,29 @@
 #include "D3DPlane.h"
 #include <vector>
 
-class _3D어플리케이션 : public D3DApplication3D
+class _공부용_3D어플리케이션 : public D3DApplication3D
 {
-	CREATE_D3DAPPLICATION3D_CONSTRUCTOR(_3D어플리케이션);
+	CREATE_D3DAPPLICATION3D_CONSTRUCTOR(_공부용_3D어플리케이션);
 protected:
 	void OnInit() override;
 	void OnUpdate() override;
+	
 private:
 	D3DMeshCube* cubeLeft;
 	D3DMeshCube* cubeRight;
 
 	D3DSphere* sphereLeft;
 	D3DSphere* sphereRight;
+	D3DText* testText;
 
-	D3DObject* obj;
+	D3DTriangleWithNormalVector* triangle;
+
+	D3DObject* hyperRectangle;
+
+	D3DObject* texture;
 	D3DPlane* plane;
 	std::vector<D3DKeyboardEvent::KeyCode> m_keyCodeVec;
+
+	inline const std::string GetApplicationName() override { return "공부용 3D 어플리케이션"; }
 };
 

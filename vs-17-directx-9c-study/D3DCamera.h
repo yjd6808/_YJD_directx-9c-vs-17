@@ -13,6 +13,7 @@ private:
 	void SetView();
 	void SetViewport();
 	void SetProjection();
+	void Initialize();
 public:
 	void SetLookAt(D3DPoint3D lookAt);
 	void SetLookAtX(float lookAt_x);
@@ -29,12 +30,19 @@ protected:
 	virtual void OnRender();
 	virtual void OnRelease();
 protected:
+	D3DVIEWPORT9 m_viewPort;
 	D3DPoint3D m_lookAt;		//카메라가 보는방향
 	D3DPoint3D m_lookUp;		//기준 축
 	D3DXMATRIXA16 m_viewMat;	//position, lookat, axis의 정보가 결합된 뷰 행렬
 	D3DXMATRIXA16 m_projMat;	//투영행렬
 	//화면상에 투영되는 정보가 나타남
 	float m_viewDegree;		// 시야각
+
+
+	DWORD m_dwElapsedTime;
+	RECT rect;
+	POINT centerPt;
+	bool isClip;
 
 	friend class D3DApplication3D;
 };

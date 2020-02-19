@@ -14,8 +14,11 @@ ostream& operator<<(ostream& os, D3DPoint3D& point) {
 }
 
 
+
 void D3DPlane::OnInit()
 {
+	D3DObject::OnInit();
+
 	if (m_width <= 0)
 		m_width = 1;
 	
@@ -26,27 +29,31 @@ void D3DPlane::OnInit()
 		m_squreSideLength = 1.0f;
 
 	D3DPoint3D startPos = { -0.5f * m_width * m_squreSideLength, 0.0f, 0.5f * m_height * m_squreSideLength };
-	cout << startPos << endl;
 
 	int horizontalVertexCount = m_width + 1;
 	int vertialVertexCount = m_height + 1;
 
 	for (int i = 0; i < vertialVertexCount; i++) {
 		for (int j = 0; j < horizontalVertexCount; j++) {
-			m_vertexes.push_back(D3DVertex3D{ D3DPoint3D(
+			m_vertexes.push_back(D3DVertex3DMaterial{ D3DPoint3D(
 				startPos.x + m_squreSideLength * j,
 				startPos.y,
 				startPos.z - m_squreSideLength * i
+				),
+				D3DPoint3D(
+					0.0f,
+					1.0f,
+					0.0f
 				)
-				,D3DCOLOR_YELLOW });
+				,D3DCOLOR_COLORVALUE(1, 1, 1, 1 )});
 
-			cout << m_vertexes[i * horizontalVertexCount + j].point << endl;
+			//cout << m_vertexes[i * horizontalVertexCount + j].point << endl;
 		}
-		cout << "-----------" << endl;
+		//cout << "-----------" << endl;
 	}
-	D3DVertex3D* vertexArray = new D3DVertex3D[horizontalVertexCount * vertialVertexCount];
+	D3DVertex3DMaterial* vertexArray = new D3DVertex3DMaterial[horizontalVertexCount * vertialVertexCount];
 	for (int i = 0; i < m_vertexes.size(); i++)
-		memcpy(&vertexArray[i], &m_vertexes[i], sizeof(D3DVertex3D));
+		memcpy(&vertexArray[i], &m_vertexes[i], sizeof(D3DVertex3DMaterial));
 
 	WORD* indexArray = new WORD[m_width * m_height * 2 * 3];
 	int indArrayIndex = 0;
@@ -75,8 +82,13 @@ void D3DPlane::OnInit()
 	}*/
 
 
+	
 
-	ULONG vertexArraySize = sizeof(D3DVertex3D) * m_vertexes.size();
+	// It seems backwards, but increasing the Power value reduces the 
+	// highlight's size
+	m_material.Power = 40.0f;
+
+	ULONG vertexArraySize = sizeof(D3DVertex3DMaterial) * m_vertexes.size();
 	ULONG indexArraySize = sizeof(WORD) * m_width * m_height * 2 * 3;
 	//정점 버퍼 생성
 	D3DCREATE_VERTEXBUFFER_DYNAMIC(m_pD3DDevice, m_pVertextBuffer, vertexArray, vertexArraySize);
@@ -98,9 +110,10 @@ void D3DPlane::OnUpdate()
 
 void D3DPlane::OnRender()
 {
-	m_pD3DDevice->SetRenderState(D3DRS_LIGHTING, false);
-	m_pD3DDevice->SetFVF(D3DFVF3D);
-	m_pD3DDevice->SetStreamSource(0, m_pVertextBuffer, 0, sizeof(D3DVertex3D));
+	D3DObject::OnRender();
+
+	m_pD3DDevice->SetFVF(D3DFVF3DMAT);
+	m_pD3DDevice->SetStreamSource(0, m_pVertextBuffer, 0, sizeof(D3DVertex3DMaterial));
 	m_pD3DDevice->SetIndices(m_pIndexBuffer);
 
 	D3DXMATRIX scaleMat;
@@ -114,8 +127,9 @@ void D3DPlane::OnRender()
 
 	D3DXMATRIX transformResult = scaleMat * rotMat* translationMat;
 	m_pD3DDevice->SetTransform(D3DTS_WORLD, &transformResult);
+	m_pD3DDevice->SetMaterial(&m_material);
 	m_pD3DDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_vertexes.size(), 0, m_width * m_height * 2);
-	m_pD3DDevice->SetRenderState(D3DRS_LIGHTING, true);
+
 }
 
 void D3DPlane::OnRelease()

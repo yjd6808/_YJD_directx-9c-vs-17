@@ -23,6 +23,4 @@ protected:
 	virtual void OnUpdate();
 	virtual void OnRender();
 	virtual void OnRelease();
-public:
-	bool isCollided(D3DSphere* otherCube);
 };

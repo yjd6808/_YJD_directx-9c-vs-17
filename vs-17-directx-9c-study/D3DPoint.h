@@ -1,5 +1,7 @@
 #pragma once
 
+#include <d3dx9.h>
+
 class D3DPoint2D
 {
 public:
@@ -43,6 +45,11 @@ public:
 	D3DPoint3D& operator+=(const D3DPoint3D& point);
 	D3DPoint3D& operator-=(const D3DPoint3D& point);
 	D3DPoint3D& operator=(const D3DPoint3D& point);
+
+	D3DPoint3D operator-(const D3DPoint3D& point);
+	D3DPoint3D operator*(const D3DPoint3D& point);
+	D3DPoint3D operator*(const float data);
 	
 	float DistanceTo(const D3DPoint3D& point);
+	D3DXVECTOR3 ToD3DXVector3();
 };

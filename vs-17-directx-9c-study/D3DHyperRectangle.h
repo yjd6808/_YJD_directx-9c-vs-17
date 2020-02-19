@@ -1,4 +1,8 @@
-#pragma once
+﻿/*
+ * Author      : Jungdo Yun
+ * Created     : 2020-02-19 오후 4:54:40
+ * Description : 직사각형 모양의 오브젝트
+ */
 
 #include <vector>
 #include <d3dx9mesh.h>
@@ -7,10 +11,12 @@
 #include "D3DObject.h"
 #include "D3DMacro.h"
 
-class D3DCube : public D3DObject
+#pragma once
+
+class D3DHyperRectangle : public D3DObject
 {
-	CREATE_D3DOBJECT_CONSTRUCTOR_WITH_1PARAM(D3DCube, float, length, m_length);
-	CREATE_D3DOBJECT_DESTRUCTOR(D3DCube);
+	CREATE_D3DOBJECT_CONSTRUCTOR_WITH_3PARAM(D3DHyperRectangle, float, length, m_length, float, depth, m_depth, float, height, m_height);
+	CREATE_D3DOBJECT_DESTRUCTOR(D3DHyperRectangle);
 private:
 	std::vector<D3DVertex3D>	m_vertexes;
 	LPDIRECT3DVERTEXBUFFER9		m_pVertextBuffer;

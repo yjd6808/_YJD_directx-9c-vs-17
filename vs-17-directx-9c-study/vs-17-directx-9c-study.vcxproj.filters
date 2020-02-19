@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="_3D어플리케이션.cpp">
-      <Filter>MyApplication</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>MyApplication</Filter>
     </ClCompile>
@@ -80,11 +77,35 @@
     <ClCompile Include="D3DSphere.cpp">
       <Filter>D3DFramework\D3DObject</Filter>
     </ClCompile>
+    <ClCompile Include="D3DTriangleWithNormalVector.cpp">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClCompile>
+    <ClCompile Include="_공부용_3D어플리케이션.cpp">
+      <Filter>MyApplication</Filter>
+    </ClCompile>
+    <ClCompile Include="_3D_슈팅게임.cpp">
+      <Filter>MyApplication</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\dx9_lighting.cpp">
+      <Filter>Sample</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DLine.cpp">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClCompile>
+    <ClCompile Include="dx9_material.cpp">
+      <Filter>Sample</Filter>
+    </ClCompile>
+    <ClCompile Include="dx9_texture.cpp">
+      <Filter>Sample</Filter>
+    </ClCompile>
+    <ClCompile Include="dx9_texture2.cpp">
+      <Filter>Sample</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DHyperRectangle.cpp">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="_3D어플리케이션.h">
-      <Filter>MyApplication</Filter>
-    </ClInclude>
     <ClInclude Include="D3DMacro.h">
       <Filter>D3DFramework</Filter>
     </ClInclude>
@@ -195,6 +216,21 @@
     <ClInclude Include="D3DSphere.h">
       <Filter>D3DFramework\D3DObject</Filter>
     </ClInclude>
+    <ClInclude Include="D3DTriangleWithNormalVector.h">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClInclude>
+    <ClInclude Include="_공부용_3D어플리케이션.h">
+      <Filter>MyApplication</Filter>
+    </ClInclude>
+    <ClInclude Include="_3D_슈팅게임.h">
+      <Filter>MyApplication</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DLine.h">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DHyperRectangle.h">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="MyApplication">
@@ -220,6 +256,9 @@
     </Filter>
     <Filter Include="D3DFramework\D3DApplication">
       <UniqueIdentifier>{02a1d053-9fb3-47bc-9e2d-5a884f68ef2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample">
+      <UniqueIdentifier>{d943bdab-cc7a-4f1e-abd2-f06f08490439}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

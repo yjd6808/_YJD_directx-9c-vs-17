@@ -30,13 +30,15 @@ public:
 
 	void Add(D3DObject* obj);
 	void Remove(D3DObject* obj);
+	inline virtual const std::string GetApplicationName() = 0;
+	int Run();
+	void Close();
 protected:
 	virtual bool Init() = 0;
 	virtual void Update() = 0;
 	virtual void Render() = 0;
 	virtual void Release() = 0;
-private:
-	int Run();
+
 protected:
 	HINSTANCE	m_hInstance;
 	HINSTANCE	m_hPrevInstance;
@@ -53,6 +55,7 @@ protected:
 	std::unordered_map<D3DObject*, D3DObject*> m_children;
 	D3DEventDispatcher* m_eventDispatcher;
 
+	
 	friend class D3DManager;
 };
 

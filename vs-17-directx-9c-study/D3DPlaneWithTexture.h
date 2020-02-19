@@ -19,6 +19,8 @@ class D3DPlaneWithTexture : public D3DObject
 	CREATE_D3DOBJECT_DESTRUCTOR(D3DPlaneWithTexture);
 private:
 	std::vector<D3DVertex3DTexture> m_vertexes;
+	int m_indicSize;
+
 	LPDIRECT3DVERTEXBUFFER9  m_pVertextBuffer;
 	LPDIRECT3DINDEXBUFFER9 m_pIndexBuffer;
 	LPDIRECT3DTEXTURE9 m_pTexture;

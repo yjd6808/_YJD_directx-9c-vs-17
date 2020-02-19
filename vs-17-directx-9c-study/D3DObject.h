@@ -11,10 +11,14 @@ class D3DObject
 public:
 	D3DObject(LPDIRECT3DDEVICE9 d3dDev);
 	~D3DObject();
+private:
+	void ViewSphereCollider() {
+
+	}
 protected:
-	virtual void OnInit() = 0;
+	virtual void OnInit();
 	virtual void OnUpdate() = 0;
-	virtual void OnRender() = 0;
+	virtual void OnRender();
 	virtual void OnRelease() = 0;
 public:
 	void SetPosition(const D3DPoint3D& point);
@@ -22,7 +26,6 @@ public:
 	void SetPositionX(const float x);
 	void SetPositionY(const float y);
 	void SetPositionZ(const float z);
-
 
 	void SetRotation(const D3DRotation& rotation);
 	void SetRotation(const float x, const float y, const float z);
@@ -52,12 +55,33 @@ public:
 	float GetScaleZ() const;
 
 	float DistanceFrom(D3DObject* obj) const;
+
+	void SetSolid(bool solidStatus);
+	void SetLighting(bool lightingStatus);
+	void SetSphereCollider(float length);
+	void SetHyperRectangleCollider(float length, float depth, float height );
+	void SetViewCollider(bool viewCollider);
+	bool IsCollided(D3DObject* otherObject);
+private:
+	float m_sphereColliderLength;
+
+	float m_hyperRectangleColliderLength;
+	float m_hyperRectangleColliderDepth;
+	float m_hyperRectangleColliderHeight;
+
+	bool m_viewCollider;
+
+	bool m_sphereColliderSetup;
+	bool m_hyperRectangleColliderSetup;
+
+	bool m_IsSolid;
+	bool m_useLight;
 protected:
 	D3DPoint3D m_position;
 	D3DRotation m_rotation;
 	D3DScale m_scale;
 	LPDIRECT3DDEVICE9 m_pD3DDevice;
-
+	
 
 	friend class D3DApplication3D;
 	friend class D3DApplication2D;

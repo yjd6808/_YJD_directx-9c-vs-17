@@ -46,4 +46,19 @@ D3DPlaneWithTexture * D3DObjectFactory::CreatePlaneWithTexture(int length, std::
 	return new D3DPlaneWithTexture(m_pD3DDevice, length, TextureFileName);
 }
 
+D3DTriangleWithNormalVector * D3DObjectFactory::CreateTriangleWithNormalVector(int length)
+{
+	return new D3DTriangleWithNormalVector(m_pD3DDevice, length);
+}
+
+D3DHyperRectangle * D3DObjectFactory::CreateHypderRectangle(float length, float depth, float height)
+{
+	return new D3DHyperRectangle(m_pD3DDevice, length, depth, height); return nullptr;
+}
+
+D3DLine * D3DObjectFactory::CreateLine(D3DPoint3D start, D3DPoint3D end)
+{
+	return new D3DLine(m_pD3DDevice, start, end);
+}
+
 

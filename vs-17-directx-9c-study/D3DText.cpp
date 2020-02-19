@@ -23,7 +23,7 @@ void D3DText::OnRender()
 	D3DXMatrixScaling(&scaleMat, m_scale.x, m_scale.y, m_scale.z);
 
 	D3DXMATRIX rotMat;
-	D3DXMatrixRotationYawPitchRoll(&rotMat, m_rotation.y, m_rotation.x, m_rotation.z);
+	D3DXMatrixRotationYawPitchRoll(&rotMat, m_rotation.y * 3.141592 / 180.0f, m_rotation.x * 3.141592 / 180.0f, m_rotation.z * 3.141592 / 180.0f);
 
 	D3DXMATRIX translationMat;
 	D3DXMatrixTranslation(&translationMat, m_position.x, m_position.y, m_position.z);

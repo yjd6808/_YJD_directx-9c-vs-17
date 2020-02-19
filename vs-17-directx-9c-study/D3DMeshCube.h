@@ -23,11 +23,10 @@ private:
 public:
 	D3DPoint3D					m_min;
 	D3DPoint3D					m_max;
+	D3DMATERIAL9 m_material;
 protected:
 	virtual void OnInit();
 	virtual void OnUpdate();
 	virtual void OnRender();
 	virtual void OnRelease();
-public:
-	bool isCollided(D3DMeshCube* otherCube);
 };

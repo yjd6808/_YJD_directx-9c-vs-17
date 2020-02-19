@@ -47,6 +47,15 @@ D3DApplication * D3DManager::GetApplication()
 	return s_applicationInstance->m_application;
 }
 
+void D3DManager::SetApplication(D3DApplication * application)
+{
+	if (s_applicationInstance == nullptr) {
+		s_applicationInstance = new D3DManager(application);
+	}
+
+	s_applicationInstance->m_application = application;
+}
+
 void D3DManager::ReleaseMemory()
 {
 	delete s_applicationInstance;

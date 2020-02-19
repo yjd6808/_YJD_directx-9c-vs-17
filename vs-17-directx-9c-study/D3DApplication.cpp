@@ -64,8 +64,8 @@ void D3DApplication::UpdateMouseEvent(UINT mouseMessage, WPARAM deltaValue, D3DM
 	POINT mousePos;
 	if (GetCursorPos(&mousePos) && ScreenToClient(currentApplication->m_hWnd, &mousePos)) 
 	{
-		mouseEvent->m_cursorPositionX = mousePos.x;
-		mouseEvent->m_cursorPositionY = mousePos.y;
+		mouseEvent->m_cursorPosition.x = mousePos.x;
+		mouseEvent->m_cursorPosition.y = mousePos.y;
 	}
 
 	switch (mouseMessage) 
@@ -274,6 +274,11 @@ int D3DApplication::Run()
 	Release();
 
 	return msg.wParam;;
+}
+
+void D3DApplication::Close()
+{
+	SendMessage(m_hWnd, WM_DESTROY, 0, 0);
 }
 
 

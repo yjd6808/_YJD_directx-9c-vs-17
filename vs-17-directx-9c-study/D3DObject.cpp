@@ -9,10 +9,46 @@ D3DObject::D3DObject(LPDIRECT3DDEVICE9 d3dDev) :
 	m_position(D3DPoint3D()),
 	m_rotation(D3DRotation())
 {
+	m_IsSolid = true;
+	m_useLight = true;
+	m_sphereColliderSetup = false;
+	m_hyperRectangleColliderSetup = false;
+
+	m_sphereColliderLength = 0.0f;
+	m_hyperRectangleColliderDepth = 0.0f;
+	m_hyperRectangleColliderHeight = 0.0f;
+	m_hyperRectangleColliderLength = 0.0f;
+	m_viewCollider = false;
 }
 
 D3DObject::~D3DObject()
 {
+	
+
+}
+
+
+void D3DObject::OnInit()
+{
+
+
+}
+
+void D3DObject::OnRender()
+{
+	if (m_IsSolid)
+		m_pD3DDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
+	else
+		m_pD3DDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
+
+	if (m_useLight)
+		m_pD3DDevice->SetRenderState(D3DRS_LIGHTING, true);
+	else
+		m_pD3DDevice->SetRenderState(D3DRS_LIGHTING, false);
+
+	if (m_viewCollider) {
+		
+	}
 }
 
 void D3DObject::SetPosition(const D3DPoint3D & point)
@@ -109,6 +145,44 @@ float D3DObject::DistanceFrom(D3DObject * obj) const
 				pow(obj->m_position.y - m_position.y, 2.0) +
 				pow(obj->m_position.z - m_position.z, 2.0)
 		   );
+}
+
+void D3DObject::SetSolid(bool solidStatus)
+{
+	m_IsSolid = solidStatus;
+}
+
+void D3DObject::SetLighting(bool lightingStatus)
+{
+	m_useLight = lightingStatus;
+}
+
+void D3DObject::SetSphereCollider(float length)
+{
+	m_sphereColliderLength;
+}
+
+void D3DObject::SetHyperRectangleCollider(float length, float depth, float height)
+{
+}
+
+void D3DObject::SetViewCollider(bool viewCollider)
+{
+}
+
+bool D3DObject::IsCollided(D3DObject * otherObject)
+{
+	if (m_sphereColliderSetup && otherObject->m_sphereColliderSetup) {
+
+		if (this->DistanceFrom(otherObject) <= m_sphereColliderLength + otherObject->m_sphereColliderLength)
+			return true;
+	}
+
+	if (m_hyperRectangleColliderSetup && otherObject->m_hyperRectangleColliderSetup) {
+
+	}
+
+	return false;
 }
 
 void D3DObject::SetRotation(const D3DRotation & rotation)

@@ -22,9 +22,15 @@ protected:
 protected:
 	virtual void OnInit() = 0;
 	virtual void OnUpdate() = 0;
+	virtual void OnInitEnd();
 protected:
 	LPDIRECT3D9 m_pD3D;
 	LPDIRECT3DDEVICE9 m_pD3DDevice;
+	D3DLIGHT9	m_light0;
+	D3DLIGHT9	m_light1;
+
 	D3DCamera* m_camera;
 	D3DObjectFactory* m_objectFactory;
+
+	inline virtual const std::string GetApplicationName() = 0;
 };

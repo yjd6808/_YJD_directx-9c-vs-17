@@ -3,6 +3,8 @@
 
 void D3DAxis::OnInit()
 {
+	D3DObject::OnInit();
+
 	if (m_length == 0.0f)
 		m_length = 1.0f;
 
@@ -37,6 +39,8 @@ void D3DAxis::OnUpdate()
 
 void D3DAxis::OnRender()
 {
+	D3DObject::OnRender();
+
 	D3DXMATRIX matWorld;
 	D3DXMatrixIdentity(&matWorld); //단위행렬로 초기화
 
@@ -45,7 +49,6 @@ void D3DAxis::OnRender()
 	m_pD3DDevice->SetFVF(D3DFVF3D);
 	m_pD3DDevice->SetStreamSource(0, m_pVertextBuffer, 0, sizeof(D3DVertex3D));
 	m_pD3DDevice->DrawPrimitive(D3DPT_LINELIST, 0, 3);
-
 	m_pD3DDevice->SetRenderState(D3DRS_LIGHTING, true);
 }
 
