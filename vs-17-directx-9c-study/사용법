@@ -1,0 +1,62 @@
+코코스 비슷하게쓰면댐
+
+D3DWindowEventListener* windowEventListener = new D3DWindowEventListener();
+windowEventListener->onWindowExit = [](D3DWindowEvent* event) {
+	cout << "윈도우 끌려고?" << endl;
+};
+windowEventListener->onWindowMaxiMize = [](D3DWindowEvent* event) {
+	cout << "최대화 이벤트 감지" << endl;
+	cout << event->GetSize().width << endl;
+	cout << event->GetSize().height << endl;
+};
+windowEventListener->onWindowMiniMize = [](D3DWindowEvent* event) {
+	cout << "최소화 이벤트 감지" << endl;
+	cout << event->GetSize().width << endl;
+	cout << event->GetSize().height << endl;
+};
+windowEventListener->onWindowMove = [](D3DWindowEvent* event) {
+	cout << "무브" << endl;
+	cout << event->GetPosition().x << " / " << event->GetPosition().y << endl;
+};
+windowEventListener->onWindowResize = [](D3DWindowEvent* event) {
+	cout << "리사이즈" << endl;
+	cout << event->GetSize().width << endl;
+	cout << event->GetSize().height << endl;
+};
+
+
+
+D3DMouseEventListener* listener = new D3DMouseEventListener();
+listener->onMouseMove = [this](D3DMouseEvent* event)
+{
+};
+
+listener->onMouseDown = [](D3DMouseEvent* event)
+{
+	if (event->GetMouseButton() == D3DMouseEvent::MouseButton::BUTTON_LEFT)
+		cout << "왼쪽 버튼 클릭" << endl;
+
+	if (event->GetMouseButton() == D3DMouseEvent::MouseButton::BUTTON_RIGHT)
+		cout << "오른쪽 버튼 클릭" << endl;
+
+	if (event->GetMouseButton() == D3DMouseEvent::MouseButton::BUTTON_MIDDLE)
+		cout << "가운데 버튼 클릭" << endl;
+};
+listener->onMouseUp = [](D3DMouseEvent* event)
+{
+	if (event->GetMouseButton() == D3DMouseEvent::MouseButton::BUTTON_LEFT)
+		cout << "왼쪽 버튼 땜" << endl;
+
+	if (event->GetMouseButton() == D3DMouseEvent::MouseButton::BUTTON_RIGHT)
+		cout << "오른쪽 버튼 땜" << endl;
+
+	if (event->GetMouseButton() == D3DMouseEvent::MouseButton::BUTTON_MIDDLE)
+		cout << "가운데 버튼 땜" << endl;
+};
+listener->onMouseScroll = [](D3DMouseEvent* event)
+{
+	if (event->GelScrollDeltaValue() > 0)
+		cout << "휠을 올림" << endl;
+	if (event->GelScrollDeltaValue() < 0)
+		cout << "휠을 내림" << endl;
+};

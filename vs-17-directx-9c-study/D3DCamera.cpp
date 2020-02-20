@@ -171,10 +171,6 @@ void D3DCamera::OnRender()
 	SetView();
 }
 
-void D3DCamera::OnRelease()
-{
-}
-
 
 void D3DCamera::SetView()
 {

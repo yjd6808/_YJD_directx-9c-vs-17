@@ -45,6 +45,13 @@ HINSTANCE hPrevInstance, \
 LPWSTR    lpCmdLine, \
 int       nCmdShow) : D3DApplication3D(hInstance, hPrevInstance, lpCmdLine, nCmdShow) {}
 
+ /********************************************************************************
+ *                                                                              *
+ *                                                                              *
+ *                            오브젝트 컨스트럭터                               *
+ *                                                                              *
+ *                                                                              *
+ ********************************************************************************/
 #define CREATE_D3DOBJECT_CONSTRUCTOR(className) public: \
 className(LPDIRECT3DDEVICE9 d3dDev) : D3DObject(d3dDev) {} 
 
@@ -78,8 +85,101 @@ vname_1(pname_1), \
 vname_2(pname_2), \
 vname_3(pname_3) {}
 
+
 #define CREATE_D3DOBJECT_DESTRUCTOR(className) public: \
 ~className() {} 
+
+ /********************************************************************************
+  *                                                                              *
+  *                                                                              *
+  *                         메쉬 오브젝트 컨스트럭터                             *
+  *                                                                              *
+  *                                                                              *
+  ********************************************************************************/
+
+#define CREATE_D3D_MESH_OBJECT_CONSTRUCTOR(className) public: \
+className(LPDIRECT3DDEVICE9 d3dDev) : D3DMeshObject(d3dDev) {} 
+
+#define CREATE_D3D_MESH_OBJECT_CONSTRUCTOR_WITH_1PARAM(className, ptype, pname, vname) private: \
+ptype vname;\
+public: \
+className(LPDIRECT3DDEVICE9 d3dDev, ptype pname) : D3DMeshObject(d3dDev), vname(pname) {} 
+
+#define CREATE_D3D_MESH_OBJECT_CONSTRUCTOR_WITH_2PARAM(className, \
+ptype_1, pname_1, vname_1, \
+ptype_2, pname_2, vname_2) \
+private: \
+ptype_1 vname_1; \
+ptype_2 vname_2; \
+public: \
+className(LPDIRECT3DDEVICE9 d3dDev, ptype_1 pname_1, ptype_2 pname_2) : D3DMeshObject(d3dDev), \
+vname_1(pname_1), \
+vname_2(pname_2) {}
+
+#define CREATE_D3D_MESH_OBJECT_CONSTRUCTOR_WITH_3PARAM(className, \
+ptype_1, pname_1, vname_1, \
+ptype_2, pname_2, vname_2, \
+ptype_3, pname_3, vname_3) \
+private: \
+ptype_1 vname_1; \
+ptype_2 vname_2; \
+ptype_3 vname_3; \
+public: \
+className(LPDIRECT3DDEVICE9 d3dDev, ptype_1 pname_1, ptype_2 pname_2, ptype_3 pname_3) : D3DMeshObject(d3dDev), \
+vname_1(pname_1), \
+vname_2(pname_2), \
+vname_3(pname_3) {}
+
+ /********************************************************************************
+ *                                                                              *
+ *                                                                              *
+ *                        버텍스 오브젝트 컨스트럭터                            *
+ *                                                                              *
+ *                                                                              *
+ ********************************************************************************/
+#define CREATE_D3D_VERTEX_OBJECT_CONSTRUCTOR(className) public: \
+className(LPDIRECT3DDEVICE9 d3dDev) : D3DVertexObject(d3dDev) {} 
+
+#define CREATE_D3D_VERTEX_OBJECT_CONSTRUCTOR_WITH_1PARAM(className, ptype, pname, vname) private: \
+ptype vname;\
+public: \
+className(LPDIRECT3DDEVICE9 d3dDev, ptype pname) : D3DVertexObject(d3dDev), vname(pname) {} 
+
+#define CREATE_D3D_VERTEX_OBJECT_CONSTRUCTOR_WITH_2PARAM(className, \
+ptype_1, pname_1, vname_1, \
+ptype_2, pname_2, vname_2) \
+private: \
+ptype_1 vname_1; \
+ptype_2 vname_2; \
+public: \
+className(LPDIRECT3DDEVICE9 d3dDev, ptype_1 pname_1, ptype_2 pname_2) : D3DVertexObject(d3dDev), \
+vname_1(pname_1), \
+vname_2(pname_2) {}
+
+#define CREATE_D3D_VERTEX_OBJECT_CONSTRUCTOR_WITH_3PARAM(className, \
+ptype_1, pname_1, vname_1, \
+ptype_2, pname_2, vname_2, \
+ptype_3, pname_3, vname_3) \
+private: \
+ptype_1 vname_1; \
+ptype_2 vname_2; \
+ptype_3 vname_3; \
+public: \
+className(LPDIRECT3DDEVICE9 d3dDev, ptype_1 pname_1, ptype_2 pname_2, ptype_3 pname_3) : D3DVertexObject(d3dDev), \
+vname_1(pname_1), \
+vname_2(pname_2), \
+vname_3(pname_3) {}
+
+
+
+
+ /********************************************************************************
+ *                                                                              *
+ *                                                                              *
+ *                           버퍼 생성 및 복사                                  *
+ *                                                                              *
+ *                                                                              *
+ ********************************************************************************/
 
 //dstD3DBuffer : 인덱스버퍼나 정점버퍼
 //srcArray : 복사할 데이터

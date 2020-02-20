@@ -1,3 +1,8 @@
+/*
+ * @Author	: Jungdo Yun
+ * @Created	: 19.12.??
+ */
+
 #include "D3DObjectFactory.h"
 
 
@@ -36,9 +41,9 @@ D3DText * D3DObjectFactory::CreateText(std::string text)
 	return new D3DText(m_pD3DDevice, text);
 }
 
-D3DSphere * D3DObjectFactory::CreateSphere(float radious)
+D3DMeshSphere * D3DObjectFactory::CreateSphere(float radious)
 {
-	return new D3DSphere(m_pD3DDevice, radious);
+	return new D3DMeshSphere(m_pD3DDevice, radious);
 }
 
 D3DPlaneWithTexture * D3DObjectFactory::CreatePlaneWithTexture(int length, std::string TextureFileName)

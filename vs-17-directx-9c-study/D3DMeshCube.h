@@ -11,22 +11,22 @@
 #include <d3dx9mesh.h>
 
 #include "D3DVertex.h"
-#include "D3DObject.h"
+#include "D3DMeshObject.h"
 #include "D3DMacro.h"
 
-class D3DMeshCube : public D3DObject
+class D3DMeshCube : public D3DMeshObject
 {
-	CREATE_D3DOBJECT_CONSTRUCTOR_WITH_1PARAM(D3DMeshCube, float, length, m_length);
+	CREATE_D3D_MESH_OBJECT_CONSTRUCTOR_WITH_1PARAM(D3DMeshCube, float, length, m_length);
 	CREATE_D3DOBJECT_DESTRUCTOR(D3DMeshCube);
 private:
 	LPD3DXMESH					m_mesh;
 public:
 	D3DPoint3D					m_min;
 	D3DPoint3D					m_max;
-	D3DMATERIAL9 m_material;
+	
 protected:
-	virtual void OnInit();
-	virtual void OnUpdate();
-	virtual void OnRender();
-	virtual void OnRelease();
+	virtual void OnInit() override;
+	virtual void OnRender() override;
+	virtual void OnRelease() override {}
+	virtual void OnUpdate() override {}
 };

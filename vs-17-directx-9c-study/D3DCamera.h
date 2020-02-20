@@ -28,7 +28,7 @@ protected:
 	virtual void OnInit();
 	virtual void OnUpdate();
 	virtual void OnRender();
-	virtual void OnRelease();
+	virtual void OnRelease() {};
 protected:
 	D3DVIEWPORT9 m_viewPort;
 	D3DPoint3D m_lookAt;		//카메라가 보는방향

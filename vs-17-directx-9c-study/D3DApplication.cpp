@@ -216,6 +216,8 @@ void D3DApplication::Add(D3DObject * obj)
 void D3DApplication::Remove(D3DObject * obj)
 {
 	m_children.erase(obj);
+
+	delete obj;
 }
 
 

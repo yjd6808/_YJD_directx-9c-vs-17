@@ -1,3 +1,8 @@
+/*
+ * @Author	: Jungdo Yun
+ * @Created	: 19.12.??
+ */
+
 #include "D3DText.h"
 
 void D3DText::OnInit()

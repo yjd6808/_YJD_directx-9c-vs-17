@@ -33,10 +33,6 @@ void D3DAxis::OnInit()
 	D3DLOCKCOPY(m_pVertextBuffer, vertexArray);
 }
 
-void D3DAxis::OnUpdate()
-{
-}
-
 void D3DAxis::OnRender()
 {
 	D3DObject::OnRender();

@@ -3,10 +3,8 @@
 #include "D3DMacro.h"
 #include <d3dx9.h>
 
-void D3DHyperRectangle::OnInit()
+void D3DHyperRectangle::ChangeVertexesColor()
 {
-	D3DObject::OnInit();
-
 	if (m_length == 0.0f)
 		m_length = 1.0f;
 
@@ -15,16 +13,16 @@ void D3DHyperRectangle::OnInit()
 	float halfHeight = m_height / 2.0f;
 
 	//앞쪽 사각형
-	m_vertexes.push_back({ D3DPoint3D {-halfLength, halfHeight, halfDepth}, D3DCOLOR_WHITE });
-	m_vertexes.push_back({ D3DPoint3D {halfLength, halfHeight, halfDepth}, D3DCOLOR_WHITE });
-	m_vertexes.push_back({ D3DPoint3D {halfLength, halfHeight, -halfDepth}, D3DCOLOR_WHITE });
-	m_vertexes.push_back({ D3DPoint3D {-halfLength, halfHeight, -halfDepth}, D3DCOLOR_WHITE });
+	m_vertexes.push_back({ D3DPoint3D {-halfLength, halfHeight, halfDepth}, m_vertexColor });
+	m_vertexes.push_back({ D3DPoint3D {halfLength, halfHeight, halfDepth}, m_vertexColor });
+	m_vertexes.push_back({ D3DPoint3D {halfLength, halfHeight, -halfDepth}, m_vertexColor });
+	m_vertexes.push_back({ D3DPoint3D {-halfLength, halfHeight, -halfDepth}, m_vertexColor });
 
 	//뒤쪽 사각형
-	m_vertexes.push_back({ D3DPoint3D {-halfLength, -halfHeight, halfDepth}, D3DCOLOR_WHITE });
-	m_vertexes.push_back({ D3DPoint3D {halfLength, -halfHeight, halfDepth}, D3DCOLOR_WHITE });
-	m_vertexes.push_back({ D3DPoint3D {halfLength, -halfHeight, -halfDepth}, D3DCOLOR_WHITE });
-	m_vertexes.push_back({ D3DPoint3D {-halfLength, -halfHeight, -halfDepth}, D3DCOLOR_WHITE });
+	m_vertexes.push_back({ D3DPoint3D {-halfLength, -halfHeight, halfDepth}, m_vertexColor });
+	m_vertexes.push_back({ D3DPoint3D {halfLength, -halfHeight, halfDepth}, m_vertexColor });
+	m_vertexes.push_back({ D3DPoint3D {halfLength, -halfHeight, -halfDepth}, m_vertexColor });
+	m_vertexes.push_back({ D3DPoint3D {-halfLength, -halfHeight, -halfDepth}, m_vertexColor });
 
 	D3DVertex3D vertexArray[8];
 	for (int i = 0; i < m_vertexes.size(); i++)
@@ -56,14 +54,13 @@ void D3DHyperRectangle::OnInit()
 	//인덱스 버퍼 생성
 	D3DCREATE_INDEXBUFFER(m_pD3DDevice, m_pIndexBuffer, indexArray);
 	D3DLOCKCOPY(m_pIndexBuffer, indexArray);
-
-
 }
 
-void D3DHyperRectangle::OnUpdate()
+void D3DHyperRectangle::OnInit()
 {
+	D3DObject::OnInit();
+	ChangeVertexesColor();
 }
-
 
 
 void D3DHyperRectangle::OnRender()

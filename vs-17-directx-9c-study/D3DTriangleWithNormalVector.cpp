@@ -5,7 +5,7 @@
 
 #include "D3DTriangleWithNormalVector.h"
 
-#include "D3DSphere.h"
+#include "D3DMeshSphere.h"
 #include "common.h"
 #include "D3DMacro.h"
 
@@ -15,17 +15,13 @@
 using namespace std;
 
 
-void D3DTriangleWithNormalVector::OnInit()
+void D3DTriangleWithNormalVector::ChangeVertexesColor()
 {
-	D3DObject::OnInit();
-
-	if (m_length == 0.0f)
-		m_length = 1.0f;
 
 	float y = sqrt(3.0) * 2.0f / 3.0f * m_length;
 	float x = m_length;
 	float downy = sqrt(3.0) / 3.0f * m_length;
-	
+
 
 	//D3DPT_LINELIST로 구현하기위해 연결할 점끼리 붙여줌
 	D3DPoint3D a = D3DPoint3D{ 0,			y,	1.0f };
@@ -42,29 +38,32 @@ void D3DTriangleWithNormalVector::OnInit()
 
 	out *= m_length;
 
-	D3DPoint3D aNormalVec = D3DPoint3D{ out.x + a.x, out.y + a.y, out.z + a.z}; //법선 벡터를 해당위치로 옮겨줌
+	D3DPoint3D aNormalVec = D3DPoint3D{ out.x + a.x, out.y + a.y, out.z + a.z }; //법선 벡터를 해당위치로 옮겨줌
 	D3DPoint3D bNormalVec = D3DPoint3D{ out.x + b.x, out.y + b.y, out.z + b.z };
 	D3DPoint3D cNormalVec = D3DPoint3D{ out.x + c.x, out.y + c.y, out.z + c.z };
 
 
 	//(b-a) 외적 (c-a)
-	m_vertexes.push_back({ a, D3DCOLOR_WHITE });
-	m_vertexes.push_back({ b, D3DCOLOR_WHITE });
 
-	m_vertexes.push_back({ b, D3DCOLOR_WHITE });
-	m_vertexes.push_back({ c, D3DCOLOR_WHITE });
+	m_vertexes.clear();
 
-	m_vertexes.push_back({ c, D3DCOLOR_WHITE });
-	m_vertexes.push_back({ a, D3DCOLOR_WHITE });
+	m_vertexes.push_back({ a, m_vertexColor });
+	m_vertexes.push_back({ b, m_vertexColor });
 
-	m_vertexes.push_back({ a, D3DCOLOR_WHITE });
-	m_vertexes.push_back({ aNormalVec, D3DCOLOR_WHITE });
+	m_vertexes.push_back({ b, m_vertexColor });
+	m_vertexes.push_back({ c, m_vertexColor });
 
-	m_vertexes.push_back({ b, D3DCOLOR_WHITE });
-	m_vertexes.push_back({ bNormalVec, D3DCOLOR_WHITE });
+	m_vertexes.push_back({ c, m_vertexColor });
+	m_vertexes.push_back({ a, m_vertexColor });
 
-	m_vertexes.push_back({ c, D3DCOLOR_WHITE });
-	m_vertexes.push_back({ cNormalVec, D3DCOLOR_WHITE });
+	m_vertexes.push_back({ a, m_vertexColor });
+	m_vertexes.push_back({ aNormalVec, m_vertexColor });
+
+	m_vertexes.push_back({ b, m_vertexColor });
+	m_vertexes.push_back({ bNormalVec, m_vertexColor });
+
+	m_vertexes.push_back({ c, m_vertexColor });
+	m_vertexes.push_back({ cNormalVec, m_vertexColor });
 
 	//법선 벡터
 	D3DVertex3D vertexArray[12];
@@ -79,10 +78,17 @@ void D3DTriangleWithNormalVector::OnInit()
 
 }
 
-void D3DTriangleWithNormalVector::OnUpdate()
+void D3DTriangleWithNormalVector::OnInit()
 {
-}
+	D3DObject::OnInit();
 
+	if (m_length == 0.0f)
+		m_length = 1.0f;
+
+
+	ChangeVertexesColor();
+
+}
 
 
 

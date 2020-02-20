@@ -1,3 +1,8 @@
+/*
+ * @Author	: Jungdo Yun
+ * @Created	: 19.12.??
+ */
+
 #include "D3DManager.h"
 #include "D3DApplication.h"
 

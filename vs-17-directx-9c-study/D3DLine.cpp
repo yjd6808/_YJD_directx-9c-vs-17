@@ -6,12 +6,11 @@
 #include "D3DLine.h"
 #include <d3dx9.h>
 
-void D3DLine::OnInit()
+void D3DLine::ChangeVertexesColor()
 {
-	D3DObject::OnInit();
 
-	m_vertexes.push_back({ D3DPoint3D {m_start.x,	m_start.y,	m_start.z}, D3DCOLOR_WHITE });
-	m_vertexes.push_back({ D3DPoint3D {m_end.x,		m_end.y,	m_end.z},	D3DCOLOR_WHITE });
+	m_vertexes.push_back({ D3DPoint3D {m_start.x,	m_start.y,	m_start.z}, m_vertexColor });
+	m_vertexes.push_back({ D3DPoint3D {m_end.x,		m_end.y,	m_end.z},	m_vertexColor });
 
 	D3DVertex3D vertexArray[2];
 	for (int i = 0; i < m_vertexes.size(); i++)
@@ -24,8 +23,10 @@ void D3DLine::OnInit()
 	D3DLOCKCOPY(m_pVertextBuffer, vertexArray);
 }
 
-void D3DLine::OnUpdate()
+void D3DLine::OnInit()
 {
+	D3DObject::OnInit();
+	ChangeVertexesColor();
 }
 
 void D3DLine::OnRender()

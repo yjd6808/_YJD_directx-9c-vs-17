@@ -7,12 +7,6 @@
     <ClCompile Include="D3DManager.cpp">
       <Filter>D3DFramework</Filter>
     </ClCompile>
-    <ClCompile Include="D3DCamera.cpp">
-      <Filter>D3DFramework\D3DObject</Filter>
-    </ClCompile>
-    <ClCompile Include="D3DCube.cpp">
-      <Filter>D3DFramework\D3DObject</Filter>
-    </ClCompile>
     <ClCompile Include="D3DObject.cpp">
       <Filter>D3DFramework\D3DObject</Filter>
     </ClCompile>
@@ -25,9 +19,6 @@
     <ClCompile Include="D3DSize.cpp">
       <Filter>D3DFramework\D3DData</Filter>
     </ClCompile>
-    <ClCompile Include="D3DAxis.cpp">
-      <Filter>D3DFramework\D3DObject</Filter>
-    </ClCompile>
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="D3DConsole.cpp">
       <Filter>D3DConsole</Filter>
@@ -37,12 +28,6 @@
     </ClCompile>
     <ClCompile Include="D3DScale.cpp">
       <Filter>D3DFramework\D3DData</Filter>
-    </ClCompile>
-    <ClCompile Include="D3DPlane.cpp">
-      <Filter>D3DFramework\D3DObject</Filter>
-    </ClCompile>
-    <ClCompile Include="D3DText.cpp">
-      <Filter>D3DFramework\D3DObject</Filter>
     </ClCompile>
     <ClCompile Include="D3DColor.cpp">
       <Filter>D3DFramework\D3DData</Filter>
@@ -68,18 +53,6 @@
     <ClCompile Include="D3DKeyboardEventListener.cpp">
       <Filter>D3DFramework\D3DEvent</Filter>
     </ClCompile>
-    <ClCompile Include="D3DPlaneWithTexture.cpp">
-      <Filter>D3DFramework\D3DObject</Filter>
-    </ClCompile>
-    <ClCompile Include="D3DMeshCube.cpp">
-      <Filter>D3DFramework\D3DObject</Filter>
-    </ClCompile>
-    <ClCompile Include="D3DSphere.cpp">
-      <Filter>D3DFramework\D3DObject</Filter>
-    </ClCompile>
-    <ClCompile Include="D3DTriangleWithNormalVector.cpp">
-      <Filter>D3DFramework\D3DObject</Filter>
-    </ClCompile>
     <ClCompile Include="_공부용_3D어플리케이션.cpp">
       <Filter>MyApplication</Filter>
     </ClCompile>
@@ -88,9 +61,6 @@
     </ClCompile>
     <ClCompile Include="Sample\dx9_lighting.cpp">
       <Filter>Sample</Filter>
-    </ClCompile>
-    <ClCompile Include="D3DLine.cpp">
-      <Filter>D3DFramework\D3DObject</Filter>
     </ClCompile>
     <ClCompile Include="dx9_material.cpp">
       <Filter>Sample</Filter>
@@ -101,9 +71,49 @@
     <ClCompile Include="dx9_texture2.cpp">
       <Filter>Sample</Filter>
     </ClCompile>
-    <ClCompile Include="D3DHyperRectangle.cpp">
+    <ClCompile Include="D3DMeshObject.h">
       <Filter>D3DFramework\D3DObject</Filter>
     </ClCompile>
+    <ClCompile Include="D3DMeshObject.cpp">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DAxis.cpp">
+      <Filter>D3DFramework\D3DObject\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DCamera.cpp">
+      <Filter>D3DFramework\D3DObject\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DCube.cpp">
+      <Filter>D3DFramework\D3DObject\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DHyperRectangle.cpp">
+      <Filter>D3DFramework\D3DObject\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DLine.cpp">
+      <Filter>D3DFramework\D3DObject\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DMeshCube.cpp">
+      <Filter>D3DFramework\D3DObject\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DPlane.cpp">
+      <Filter>D3DFramework\D3DObject\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DPlaneWithTexture.cpp">
+      <Filter>D3DFramework\D3DObject\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DMeshSphere.cpp">
+      <Filter>D3DFramework\D3DObject\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DText.cpp">
+      <Filter>D3DFramework\D3DObject\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DTriangleWithNormalVector.cpp">
+      <Filter>D3DFramework\D3DObject\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DVertexObject.cpp">
+      <Filter>D3DFramework\D3DObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="D3DMacro.h">
@@ -117,12 +127,6 @@
     </ClInclude>
     <ClInclude Include="StringFormatter.h">
       <Filter>D3DFramework</Filter>
-    </ClInclude>
-    <ClInclude Include="D3DCamera.h">
-      <Filter>D3DFramework\D3DObject</Filter>
-    </ClInclude>
-    <ClInclude Include="D3DCube.h">
-      <Filter>D3DFramework\D3DObject</Filter>
     </ClInclude>
     <ClInclude Include="D3DObject.h">
       <Filter>D3DFramework\D3DObject</Filter>
@@ -142,9 +146,6 @@
     <ClInclude Include="D3DSize.h">
       <Filter>D3DFramework\D3DData</Filter>
     </ClInclude>
-    <ClInclude Include="D3DAxis.h">
-      <Filter>D3DFramework\D3DObject</Filter>
-    </ClInclude>
     <ClInclude Include="common.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="D3DConsole.h">
@@ -159,13 +160,7 @@
     <ClInclude Include="D3DAnimation.h">
       <Filter>D3DFramework\D3DAnimation</Filter>
     </ClInclude>
-    <ClInclude Include="D3DPlane.h">
-      <Filter>D3DFramework\D3DObject</Filter>
-    </ClInclude>
     <ClInclude Include="D3DObjectFactory.h">
-      <Filter>D3DFramework\D3DObject</Filter>
-    </ClInclude>
-    <ClInclude Include="D3DText.h">
       <Filter>D3DFramework\D3DObject</Filter>
     </ClInclude>
     <ClInclude Include="D3DColor.h">
@@ -207,30 +202,50 @@
     <ClInclude Include="D3DKeyboardEventListener.h">
       <Filter>D3DFramework\D3DEvent</Filter>
     </ClInclude>
-    <ClInclude Include="D3DPlaneWithTexture.h">
-      <Filter>D3DFramework\D3DObject</Filter>
-    </ClInclude>
-    <ClInclude Include="D3DMeshCube.h">
-      <Filter>D3DFramework\D3DObject</Filter>
-    </ClInclude>
-    <ClInclude Include="D3DSphere.h">
-      <Filter>D3DFramework\D3DObject</Filter>
-    </ClInclude>
-    <ClInclude Include="D3DTriangleWithNormalVector.h">
-      <Filter>D3DFramework\D3DObject</Filter>
-    </ClInclude>
     <ClInclude Include="_공부용_3D어플리케이션.h">
       <Filter>MyApplication</Filter>
     </ClInclude>
     <ClInclude Include="_3D_슈팅게임.h">
       <Filter>MyApplication</Filter>
     </ClInclude>
-    <ClInclude Include="D3DLine.h">
-      <Filter>D3DFramework\D3DObject</Filter>
+    <ClInclude Include="D3DAxis.h">
+      <Filter>D3DFramework\D3DObject\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DCamera.h">
+      <Filter>D3DFramework\D3DObject\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DCube.h">
+      <Filter>D3DFramework\D3DObject\Objects</Filter>
     </ClInclude>
     <ClInclude Include="D3DHyperRectangle.h">
+      <Filter>D3DFramework\D3DObject\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DLine.h">
+      <Filter>D3DFramework\D3DObject\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DMeshCube.h">
+      <Filter>D3DFramework\D3DObject\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DPlane.h">
+      <Filter>D3DFramework\D3DObject\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DPlaneWithTexture.h">
+      <Filter>D3DFramework\D3DObject\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DMeshSphere.h">
+      <Filter>D3DFramework\D3DObject\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DText.h">
+      <Filter>D3DFramework\D3DObject\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DTriangleWithNormalVector.h">
+      <Filter>D3DFramework\D3DObject\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DVertexObject.h">
       <Filter>D3DFramework\D3DObject</Filter>
     </ClInclude>
+    <ClInclude Include="사용법" />
+    <ClInclude Include="Random.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="MyApplication">
@@ -259,6 +274,9 @@
     </Filter>
     <Filter Include="Sample">
       <UniqueIdentifier>{d943bdab-cc7a-4f1e-abd2-f06f08490439}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3DFramework\D3DObject\Objects">
+      <UniqueIdentifier>{6163d41a-d62a-45ad-a4c3-34029345db71}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

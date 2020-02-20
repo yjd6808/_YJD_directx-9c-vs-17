@@ -1,3 +1,8 @@
+/*
+ * @Author	: Jungdo Yun
+ * @Created	: 19.12.??
+ */
+
 #pragma once
 
 #include "D3DCamera.h"
@@ -8,7 +13,7 @@
 #include "D3DPlaneWithTexture.h"
 #include "D3DMeshCube.h"
 #include "D3DTriangleWithNormalVector.h"
-#include "D3DSphere.h"
+#include "D3DMeshSphere.h"
 #include "D3DLine.h"
 #include "D3DHyperRectangle.h"
 
@@ -26,7 +31,7 @@ public:
 	D3DAxis* CreateAxis(float length);
 	D3DPlane* CreatePlane(int width, int height, float squreSideLength);
 	D3DText* CreateText(std::string text);
-	D3DSphere* CreateSphere(float radious);
+	D3DMeshSphere* CreateSphere(float radious);
 	D3DPlaneWithTexture* CreatePlaneWithTexture(int length, std::string TextureFileName);
 	D3DTriangleWithNormalVector* CreateTriangleWithNormalVector(int length);
 	D3DHyperRectangle* CreateHypderRectangle(float length, float depth, float height);

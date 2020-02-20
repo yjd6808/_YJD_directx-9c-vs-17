@@ -1,20 +1,29 @@
+/*
+ * @Author	: Jungdo Yun
+ * @Created	: 19.12.??
+ */
+
 #pragma once
 
 #include <d3d9.h>
+#include <vector>
 
 #include "D3DPoint.h"
 #include "D3DRotation.h"
 #include "D3DScale.h"
+#include "D3DVertex.h"
 
 class D3DObject
 {
 public:
 	D3DObject(LPDIRECT3DDEVICE9 d3dDev);
-	~D3DObject();
+	virtual ~D3DObject();
 private:
-	void ViewSphereCollider() {
+	void InitSphereCollider();
+	void InitHyperRectangleCollider();
 
-	}
+	void RenderSphereCollider();
+	void RenderHyperRectangleCollider();
 protected:
 	virtual void OnInit();
 	virtual void OnUpdate() = 0;
@@ -58,8 +67,8 @@ public:
 
 	void SetSolid(bool solidStatus);
 	void SetLighting(bool lightingStatus);
-	void SetSphereCollider(float length);
-	void SetHyperRectangleCollider(float length, float depth, float height );
+	void SetSphereCollider(float length, bool use = true);
+	void SetHyperRectangleCollider(float length, float depth, float height, bool use = true);
 	void SetViewCollider(bool viewCollider);
 	bool IsCollided(D3DObject* otherObject);
 private:
@@ -73,6 +82,14 @@ private:
 
 	bool m_sphereColliderSetup;
 	bool m_hyperRectangleColliderSetup;
+
+	LPD3DXMESH m_sphereMesh;
+	std::vector<D3DVertex3D>	m_hyperRectangleVertexes;
+	LPDIRECT3DVERTEXBUFFER9		m_phyperRectangleVertextBuffer;
+	LPDIRECT3DINDEXBUFFER9		m_phyperRectangleIndexBuffer;
+
+	D3DPoint3D					m_hyperRectangleMin;
+	D3DPoint3D					m_hyperRectangleMax;
 
 	bool m_IsSolid;
 	bool m_useLight;

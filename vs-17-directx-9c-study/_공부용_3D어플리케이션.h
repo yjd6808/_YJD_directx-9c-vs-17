@@ -4,7 +4,7 @@
 
 #include "D3DCube.h"
 #include "D3DMeshCube.h"
-#include "D3DSphere.h"
+#include "D3DMeshSphere.h"
 #include "D3DPlane.h"
 #include <vector>
 
@@ -19,8 +19,8 @@ private:
 	D3DMeshCube* cubeLeft;
 	D3DMeshCube* cubeRight;
 
-	D3DSphere* sphereLeft;
-	D3DSphere* sphereRight;
+	D3DMeshSphere* sphereLeft;
+	D3DMeshSphere* sphereRight;
 	D3DText* testText;
 
 	D3DTriangleWithNormalVector* triangle;

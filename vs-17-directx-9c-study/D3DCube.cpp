@@ -3,26 +3,22 @@
 #include "D3DMacro.h"
 #include <d3dx9.h>
 
-void D3DCube::OnInit()
+void D3DCube::ChangeVertexesColor()
 {
-	D3DObject::OnInit();
-
-	if (m_length == 0.0f)
-		m_length = 1.0f;
-
 	float halfLength = m_length / 2.0f;
 
+	m_vertexes.clear();
 	//앞쪽 사각형
-	m_vertexes.push_back({ D3DPoint3D {-halfLength, halfLength, halfLength}, D3DCOLOR_WHITE });
-	m_vertexes.push_back({ D3DPoint3D {halfLength, halfLength, halfLength}, D3DCOLOR_WHITE });
-	m_vertexes.push_back({ D3DPoint3D {halfLength, halfLength, -halfLength}, D3DCOLOR_WHITE });
-	m_vertexes.push_back({ D3DPoint3D {-halfLength, halfLength, -halfLength}, D3DCOLOR_WHITE });
+	m_vertexes.push_back({ D3DPoint3D {-halfLength, halfLength, halfLength}, m_vertexColor });
+	m_vertexes.push_back({ D3DPoint3D {halfLength, halfLength, halfLength}, m_vertexColor });
+	m_vertexes.push_back({ D3DPoint3D {halfLength, halfLength, -halfLength}, m_vertexColor });
+	m_vertexes.push_back({ D3DPoint3D {-halfLength, halfLength, -halfLength}, m_vertexColor });
 
 	//뒤쪽 사각형
-	m_vertexes.push_back({ D3DPoint3D {-halfLength, -halfLength, halfLength}, D3DCOLOR_WHITE });
-	m_vertexes.push_back({ D3DPoint3D {halfLength, -halfLength, halfLength}, D3DCOLOR_WHITE });
-	m_vertexes.push_back({ D3DPoint3D {halfLength, -halfLength, -halfLength}, D3DCOLOR_WHITE });
-	m_vertexes.push_back({ D3DPoint3D {-halfLength, -halfLength, -halfLength}, D3DCOLOR_WHITE });
+	m_vertexes.push_back({ D3DPoint3D {-halfLength, -halfLength, halfLength}, m_vertexColor });
+	m_vertexes.push_back({ D3DPoint3D {halfLength, -halfLength, halfLength}, m_vertexColor });
+	m_vertexes.push_back({ D3DPoint3D {halfLength, -halfLength, -halfLength}, m_vertexColor });
+	m_vertexes.push_back({ D3DPoint3D {-halfLength, -halfLength, -halfLength}, m_vertexColor });
 
 	D3DVertex3D vertexArray[8];
 	for (int i = 0; i < m_vertexes.size(); i++)
@@ -43,7 +39,7 @@ void D3DCube::OnInit()
 		0, 7, 4
 	};
 
-	
+
 
 	//정점 버퍼 생성
 	D3DCREATE_VERTEXBUFFER(m_pD3DDevice, m_pVertextBuffer, vertexArray);
@@ -54,15 +50,17 @@ void D3DCube::OnInit()
 	//인덱스 버퍼 생성
 	D3DCREATE_INDEXBUFFER(m_pD3DDevice, m_pIndexBuffer, indexArray);
 	D3DLOCKCOPY(m_pIndexBuffer, indexArray);
-
-
 }
 
-void D3DCube::OnUpdate()
+void D3DCube::OnInit()
 {
+	D3DObject::OnInit();
+
+	if (m_length == 0.0f)
+		m_length = 1.0f;
+
+	ChangeVertexesColor();
 }
-
-
 
 void D3DCube::OnRender()
 {
@@ -102,12 +100,4 @@ void D3DCube::OnRelease()
 	if (m_pVertextBuffer != nullptr)
 		m_pVertextBuffer->Release();
 }
-//
-//bool D3DCube::isCollided(D3DCube * otherCube)
-//{
-//	if (this->m_min.x <= otherCube->m_max.x && this->m_max.x >= otherCube->m_min.x &&
-//		this->m_min.y <= otherCube->m_max.y && this->m_max.y >= otherCube->m_min.y &&
-//		this->m_min.z <= otherCube->m_max.z && this->m_max.z >= otherCube->m_min.z)
-//		return true;
-//	return false;
-//}
+

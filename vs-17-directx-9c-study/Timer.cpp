@@ -24,8 +24,11 @@ double Timer::StandTimer()
 
 void Timer::Begin()
 {
+	start = system_clock::now();
 }
 
 void Timer::End()
 {
+	end = system_clock::now();
+	duration<double> elpasedTime = end - start;
 }

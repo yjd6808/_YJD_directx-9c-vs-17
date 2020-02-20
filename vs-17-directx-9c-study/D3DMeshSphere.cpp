@@ -3,29 +3,26 @@
  * Created     : 2020-02-17 오후 6:35:22
  */
 
-#include "D3DSphere.h"
+#include "D3DMeshSphere.h"
 #include "common.h"
 #include "D3DMacro.h"
 #include <d3dx9.h>
 
 
-void D3DSphere::OnInit()
+void D3DMeshSphere::OnInit()
 {
 	D3DObject::OnInit();
 
 	if (m_radious == 0.0f)
 		m_radious = 1.0f;
 
-	D3DXCreateSphere(m_pD3DDevice, m_radious, 10, 20, &m_mesh, nullptr);
+	D3DXCreateSphere(m_pD3DDevice, m_radious, 15, 30, &m_mesh, nullptr);
 
 
 }
 
-void D3DSphere::OnUpdate()
-{
-}
 
-void D3DSphere::OnRender()
+void D3DMeshSphere::OnRender()
 {
 	D3DObject::OnRender();
 
@@ -42,9 +39,5 @@ void D3DSphere::OnRender()
 	D3DXMATRIX transformResult = scaleMat * rotMat* translationMat;
 	m_pD3DDevice->SetTransform(D3DTS_WORLD, &transformResult);
 	m_mesh->DrawSubset(0);
-}
-
-void D3DSphere::OnRelease()
-{
 }
 

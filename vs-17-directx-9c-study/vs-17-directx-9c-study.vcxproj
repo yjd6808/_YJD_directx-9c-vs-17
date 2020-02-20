@@ -42,7 +42,13 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="D3DMeshObject.cpp" />
+    <ClCompile Include="D3DMeshObject.h">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="D3DMouseEventListener.cpp" />
+    <ClCompile Include="D3DVertexObject.cpp" />
     <ClCompile Include="D3DObject.cpp" />
     <ClCompile Include="D3DObjectFactory.cpp" />
     <ClCompile Include="D3DPlane.cpp" />
@@ -54,7 +60,7 @@
     <ClCompile Include="D3DRotation.cpp" />
     <ClCompile Include="D3DScale.cpp" />
     <ClCompile Include="D3DSize.cpp" />
-    <ClCompile Include="D3DSphere.cpp">
+    <ClCompile Include="D3DMeshSphere.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -68,6 +74,7 @@
     <ClCompile Include="dx9_texture.cpp" />
     <ClCompile Include="dx9_texture2.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Random.cpp" />
     <ClCompile Include="Sample\dx9_lighting.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="_3D_슈팅게임.cpp" />
@@ -95,6 +102,10 @@
     </ClInclude>
     <ClInclude Include="D3DMouseEvent.h" />
     <ClInclude Include="D3DMouseEventListener.h" />
+    <ClInclude Include="D3DVertexObject.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="D3DPlane.h" />
     <ClInclude Include="D3DPlaneWithTexture.h">
       <SubType>
@@ -102,7 +113,7 @@
     </ClInclude>
     <ClInclude Include="D3DRotation.h" />
     <ClInclude Include="D3DScale.h" />
-    <ClInclude Include="D3DSphere.h">
+    <ClInclude Include="D3DMeshSphere.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -114,6 +125,7 @@
     </ClInclude>
     <ClInclude Include="D3DWindowEvent.h" />
     <ClInclude Include="D3DWindowEventListener.h" />
+    <ClInclude Include="Random.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="D3DApplication.h" />
@@ -138,6 +150,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="_공부용_3D어플리케이션.h" />
+    <ClInclude Include="사용법" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

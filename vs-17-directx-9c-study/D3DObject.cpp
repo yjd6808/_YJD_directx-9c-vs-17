@@ -1,6 +1,12 @@
+/*
+ * @Author	: Jungdo Yun
+ * @Created	: 19.12.??
+ */
+
 #include "D3DObject.h"
 
 #include <iostream>
+#include "D3DColor.h"
 
 using namespace std;
 D3DObject::D3DObject(LPDIRECT3DDEVICE9 d3dDev) :
@@ -9,8 +15,8 @@ D3DObject::D3DObject(LPDIRECT3DDEVICE9 d3dDev) :
 	m_position(D3DPoint3D()),
 	m_rotation(D3DRotation())
 {
-	m_IsSolid = true;
-	m_useLight = true;
+	m_IsSolid = false;
+	m_useLight = false;
 	m_sphereColliderSetup = false;
 	m_hyperRectangleColliderSetup = false;
 
@@ -27,11 +33,126 @@ D3DObject::~D3DObject()
 
 }
 
+void D3DObject::InitSphereCollider()
+{
+	if (m_sphereColliderSetup == false)
+		return;
+		
+	D3DXCreateSphere(m_pD3DDevice, m_sphereColliderLength, 15, 30, &m_sphereMesh, nullptr);
+}
+
+void D3DObject::InitHyperRectangleCollider()
+{
+	if (m_hyperRectangleColliderSetup == false)
+		return;
+
+	m_hyperRectangleVertexes.clear();
+
+	float halfLength = m_hyperRectangleColliderLength / 2.0f;
+	float halfDepth = m_hyperRectangleColliderDepth / 2.0f;
+	float halfHeight = m_hyperRectangleColliderHeight / 2.0f;
+
+	//앞쪽 사각형
+	m_hyperRectangleVertexes.push_back({ D3DPoint3D {-halfLength, halfHeight, halfDepth}, D3DCOLOR_WHITE });
+	m_hyperRectangleVertexes.push_back({ D3DPoint3D {halfLength, halfHeight, halfDepth}, D3DCOLOR_WHITE });
+	m_hyperRectangleVertexes.push_back({ D3DPoint3D {halfLength, halfHeight, -halfDepth}, D3DCOLOR_WHITE });
+	m_hyperRectangleVertexes.push_back({ D3DPoint3D {-halfLength, halfHeight, -halfDepth}, D3DCOLOR_WHITE });
+
+	//뒤쪽 사각형
+	m_hyperRectangleVertexes.push_back({ D3DPoint3D {-halfLength, -halfHeight, halfDepth}, D3DCOLOR_WHITE });
+	m_hyperRectangleVertexes.push_back({ D3DPoint3D {halfLength, -halfHeight, halfDepth}, D3DCOLOR_WHITE });
+	m_hyperRectangleVertexes.push_back({ D3DPoint3D {halfLength, -halfHeight, -halfDepth}, D3DCOLOR_WHITE });
+	m_hyperRectangleVertexes.push_back({ D3DPoint3D {-halfLength, -halfHeight, -halfDepth}, D3DCOLOR_WHITE });
+
+	D3DVertex3D vertexArray[8];
+	for (int i = 0; i < m_hyperRectangleVertexes.size(); i++)
+		memcpy(&vertexArray[i], &m_hyperRectangleVertexes[i], sizeof(D3DVertex3D));
+
+	WORD indexArray[] = {
+		0, 1, 2,
+		0, 2, 3,
+		4, 5, 6,
+		4, 6, 7,
+		0, 1, 5,
+		0, 5, 4,
+		3, 2, 6,
+		3, 6, 7,
+		1, 2, 6,
+		1, 6, 5,
+		0, 3, 7,
+		0, 7, 4
+	};
+
+
+
+	//정점 버퍼 생성
+	D3DCREATE_VERTEXBUFFER(m_pD3DDevice, m_phyperRectangleVertextBuffer, vertexArray);
+
+	//정점 버퍼에 정점데이터 복사
+	D3DLOCKCOPY(m_phyperRectangleVertextBuffer, vertexArray);
+
+	//인덱스 버퍼 생성
+	D3DCREATE_INDEXBUFFER(m_pD3DDevice, m_phyperRectangleIndexBuffer, indexArray);
+	D3DLOCKCOPY(m_phyperRectangleIndexBuffer, indexArray);
+}
+
+void D3DObject::RenderSphereCollider()
+{
+	if (m_sphereColliderSetup == false)
+		return;
+
+	D3DXMATRIX scaleMat;
+	D3DXMatrixScaling(&scaleMat, m_scale.x, m_scale.y, m_scale.z);
+
+	D3DXMATRIX rotMat;
+	D3DXMatrixRotationYawPitchRoll(&rotMat, m_rotation.y, m_rotation.x, m_rotation.z);
+
+	D3DXMATRIX translationMat;
+	D3DXMatrixTranslation(&translationMat, m_position.x, m_position.y, m_position.z);
+
+	//좌표계 띵킹좀 제대로해라 z가 뒤로가면 -지 +냐 어휴..
+	D3DXMATRIX transformResult = scaleMat * rotMat* translationMat;
+	m_pD3DDevice->SetTransform(D3DTS_WORLD, &transformResult);
+	m_sphereMesh->DrawSubset(0);
+}
+
+void D3DObject::RenderHyperRectangleCollider()
+{
+	if (m_hyperRectangleColliderSetup == false)
+		return;
+
+	m_pD3DDevice->SetFVF(D3DFVF3D);
+	m_pD3DDevice->SetStreamSource(0, m_phyperRectangleVertextBuffer, 0, sizeof(D3DVertex3D));
+	m_pD3DDevice->SetIndices(m_phyperRectangleIndexBuffer);
+
+	D3DXMATRIX scaleMat;
+	D3DXMatrixScaling(&scaleMat, m_scale.x, m_scale.y, m_scale.z);
+
+	D3DXMATRIX rotMat;
+	D3DXMatrixRotationYawPitchRoll(&rotMat, m_rotation.y * 3.141592 / 180.0f, m_rotation.x * 3.141592 / 180.0f, m_rotation.z * 3.141592 / 180.0f);
+
+	D3DXMATRIX translationMat;
+	D3DXMatrixTranslation(&translationMat, m_position.x, m_position.y, m_position.z);
+
+	m_hyperRectangleMin.x = m_position.x - m_hyperRectangleColliderLength / 2.0f;
+	m_hyperRectangleMin.y = m_position.y - m_hyperRectangleColliderHeight / 2.0f;
+	m_hyperRectangleMin.z = m_position.z - m_hyperRectangleColliderDepth / 2.0f;
+
+	m_hyperRectangleMax.x = m_position.x + m_hyperRectangleColliderLength / 2.0f;
+	m_hyperRectangleMax.y = m_position.y + m_hyperRectangleColliderHeight / 2.0f;
+	m_hyperRectangleMax.z = m_position.z + m_hyperRectangleColliderDepth / 2.0f;
+
+	D3DXMATRIX transformResult = scaleMat * rotMat* translationMat;
+	m_pD3DDevice->SetTransform(D3DTS_WORLD, &transformResult);
+	m_pD3DDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_hyperRectangleVertexes.size(), 0, 6 * 2);
+}
+
 
 void D3DObject::OnInit()
 {
-
-
+	if (m_hyperRectangleColliderSetup)
+	InitSphereCollider();
+	InitHyperRectangleCollider();
 }
 
 void D3DObject::OnRender()
@@ -47,7 +168,10 @@ void D3DObject::OnRender()
 		m_pD3DDevice->SetRenderState(D3DRS_LIGHTING, false);
 
 	if (m_viewCollider) {
-		
+		m_pD3DDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
+		RenderSphereCollider();
+		RenderHyperRectangleCollider();
+		m_pD3DDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 	}
 }
 
@@ -157,18 +281,28 @@ void D3DObject::SetLighting(bool lightingStatus)
 	m_useLight = lightingStatus;
 }
 
-void D3DObject::SetSphereCollider(float length)
+void D3DObject::SetSphereCollider(float length, bool use)
 {
-	m_sphereColliderLength;
+	m_sphereColliderLength = length;
+	m_sphereColliderSetup = use;
+	InitSphereCollider();
 }
 
-void D3DObject::SetHyperRectangleCollider(float length, float depth, float height)
+void D3DObject::SetHyperRectangleCollider(float length, float depth, float height, bool use)
 {
+	m_hyperRectangleColliderLength = length;
+	m_hyperRectangleColliderDepth = depth;
+	m_hyperRectangleColliderHeight = height;
+	m_hyperRectangleColliderSetup = use;
+	InitHyperRectangleCollider();
 }
 
 void D3DObject::SetViewCollider(bool viewCollider)
 {
+	m_viewCollider = viewCollider;
 }
+
+
 
 bool D3DObject::IsCollided(D3DObject * otherObject)
 {
@@ -179,7 +313,11 @@ bool D3DObject::IsCollided(D3DObject * otherObject)
 	}
 
 	if (m_hyperRectangleColliderSetup && otherObject->m_hyperRectangleColliderSetup) {
-
+		if (this->m_hyperRectangleMin.x <= otherObject->m_hyperRectangleMax.x && this->m_hyperRectangleMax.x >= otherObject->m_hyperRectangleMin.x &&
+			this->m_hyperRectangleMin.y <= otherObject->m_hyperRectangleMax.y && this->m_hyperRectangleMax.y >= otherObject->m_hyperRectangleMin.y &&
+			this->m_hyperRectangleMin.z <= otherObject->m_hyperRectangleMax.z && this->m_hyperRectangleMax.z >= otherObject->m_hyperRectangleMin.z)
+			return true;
+		return false;
 	}
 
 	return false;

@@ -1,18 +1,14 @@
+/*
+ * @Author	: Jungdo Yun
+ * @Created	: 19.12.??
+ */
+
 #include "D3DPlane.h"
 #include <d3dx9.h>
 #include <iostream>
 
 
 using namespace std;
-
-//테스트 출력
-ostream& operator<<(ostream& os, D3DPoint3D& point) {
-	cout << "x : " << point.x << " / ";
-	cout << "y : " << point.y << " / ";
-	cout << "z : " << point.z;
-	return os;
-}
-
 
 
 void D3DPlane::OnInit()
@@ -45,7 +41,7 @@ void D3DPlane::OnInit()
 					1.0f,
 					0.0f
 				)
-				,D3DCOLOR_COLORVALUE(1, 1, 1, 1 )});
+				,D3DCOLOR_COLORVALUE(m_diffuse.a, m_diffuse.r, m_diffuse.g, m_diffuse.b)});
 
 			//cout << m_vertexes[i * horizontalVertexCount + j].point << endl;
 		}
@@ -82,12 +78,6 @@ void D3DPlane::OnInit()
 	}*/
 
 
-	
-
-	// It seems backwards, but increasing the Power value reduces the 
-	// highlight's size
-	m_material.Power = 40.0f;
-
 	ULONG vertexArraySize = sizeof(D3DVertex3DMaterial) * m_vertexes.size();
 	ULONG indexArraySize = sizeof(WORD) * m_width * m_height * 2 * 3;
 	//정점 버퍼 생성
@@ -110,7 +100,7 @@ void D3DPlane::OnUpdate()
 
 void D3DPlane::OnRender()
 {
-	D3DObject::OnRender();
+	D3DMeshObject::OnRender();
 
 	m_pD3DDevice->SetFVF(D3DFVF3DMAT);
 	m_pD3DDevice->SetStreamSource(0, m_pVertextBuffer, 0, sizeof(D3DVertex3DMaterial));
@@ -127,7 +117,6 @@ void D3DPlane::OnRender()
 
 	D3DXMATRIX transformResult = scaleMat * rotMat* translationMat;
 	m_pD3DDevice->SetTransform(D3DTS_WORLD, &transformResult);
-	m_pD3DDevice->SetMaterial(&m_material);
 	m_pD3DDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_vertexes.size(), 0, m_width * m_height * 2);
 
 }

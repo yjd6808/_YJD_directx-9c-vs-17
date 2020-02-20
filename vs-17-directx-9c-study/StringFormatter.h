@@ -1,3 +1,8 @@
+/*
+ * @Author	: Jungdo Yun
+ * @Created	: 19.12.??
+ */
+
 #pragma once
 
 #include <sstream>

@@ -36,6 +36,8 @@ public:
 		};
 		unsigned value;
 	};
+
+
 public:
 	D3DColor();
 	D3DColor(const unsigned colorValue);
