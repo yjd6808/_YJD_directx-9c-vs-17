@@ -28,8 +28,6 @@ ostream& operator<<(ostream& os, D3DXVECTOR3 p)
 	return os;
 }
 
-
-
 void D3DCamera::OnUpdate()
 {
 	float moveSpeed = 0.02f;
@@ -43,8 +41,6 @@ void D3DCamera::OnUpdate()
 	GetCursorPos(&curPt);
 	DWORD _CurTime = GetTickCount();
 	static DWORD _OldTime = GetTickCount();
-
-
 
 	D3DXVECTOR3 up = m_lookUp.ToD3DXVector3();
 	D3DXVECTOR3 position = m_position.ToD3DXVector3();
@@ -170,7 +166,6 @@ void D3DCamera::OnRender()
 {
 	SetView();
 }
-
 
 void D3DCamera::SetView()
 {

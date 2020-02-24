@@ -8,9 +8,9 @@
 using namespace std;
 
 
-
 void _3D_½´ÆÃ°ÔÀÓ::OnInit()
 {
+
 	m_score = 0;
 	m_monsterGenTime = 0.5f;
 	m_monsterGenElpasedTime = 0.0f;
@@ -81,7 +81,6 @@ void _3D_½´ÆÃ°ÔÀÓ::OnInit()
 		}
 	};
 
-
 	keyboardEventListener->onKeyReleased = [this](D3DKeyboardEvent* event) {
 
 		for (auto i = m_keyCodeVec.begin(); i != m_keyCodeVec.end();) {
@@ -92,8 +91,8 @@ void _3D_½´ÆÃ°ÔÀÓ::OnInit()
 				i++;
 		}
 	};
-
 #pragma endregion
+
 
 	m_eventDispatcher->AddEventListener(keyboardEventListener);
 }
